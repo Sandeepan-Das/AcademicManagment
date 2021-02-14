@@ -4,9 +4,9 @@
   "description": "Academic Managment",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node backEnd/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "dev": "nodemon backEnd/app.js"
   },
   "author": "Sandeepan,Biswajit,Somen",
   "license": "ISC",

@@ -1,6 +1,7 @@
 const express = require("express"),
   cors = require("cors"),
   body_parser = require("body-parser");
+const path = require("path");
 
 const app = express();
 
@@ -17,7 +18,7 @@ app.use(express.json());
 app.use(route);
 
 //Serving static files
-app.use(express.static("frontEnd/public"));
+app.use(express.static("frontEnd"));
 
 //Declaring the port for connection
 const port = process.env.PORT || 3000;
