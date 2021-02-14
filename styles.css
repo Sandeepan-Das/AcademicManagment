@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.container1 {
+  width: 100%;
+  height: 100vh;
+  background-image: url(Aqualicious.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding-top: 10px;
+  box-sizing: border-box;
+}
+
+.navbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background: rgba(29, 33, 61, 0.5);
+  padding: 0 60px;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.logo {
+  width: 155px;
+  padding-left: 10px;
+  color: #fff;
+  font-size: 18px;
+}
+
+nav {
+  flex: 1;
+  margin-left: 80%;
+}
+
+nav ul li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  position: relative;
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+}
+
+.header-image {
+  width: 100%;
+  height: 50%;
+  font-size: 25px;
+  left: 0;
+  pointer-events: none;
+  background-image: url(https://ssl.gstatic.com/atari/images/vision-header.jpg);
+}
+
+.mssg-container {
+  width: 600 px;
+  height: ;
+}
