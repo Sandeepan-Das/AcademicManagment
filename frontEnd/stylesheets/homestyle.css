@@ -17,7 +17,7 @@ body {
 #navbarNavDropdown {
   font-family: bignoodletitling;
   font-size: 20px;
-  padding-right: 20px;
+  margin-right: 10px;
 }
 
 .wrapper {
@@ -26,11 +26,11 @@ body {
 }
 
 .banner-area {
-  padding-top: 0;
+  padding-top: 20px;
   width: 100%;
   height: 500px;
-  position: static;
-  top: 100px;
+  position: fixed;
+  /* top: 500px; */
   background-image: url(../assets/headerimage.jpg);
   -webkit-background-size: cover;
   background-size: cover;
@@ -39,22 +39,33 @@ body {
 }
 
 .content-area {
-  width: 100%;
+  top: 450px;
+  /* align-content: center; */
   position: relative;
   background: #ddd;
   height: 1500px;
 }
 
 .content-area h2 {
+  align-content: center;
   font-family: bignoodletitling;
   letter-spacing: 4px;
   padding-top: 30px;
-  font-size: 40px;
+  font-size: 50px;
   margin: 0;
 }
 
+.content-area h5 {
+  font-family: bignoodletitling;
+  letter-spacing: 3px;
+  font-size: 30px;
+  padding-bottom: 10px;
+}
+
 .content-area p {
-  padding: 2% 0;
+  letter-spacing: 1px;
+  padding: 1px 0;
   font-family: merienda;
-  line-height: 30px;
+  font-size: 25px;
+  line-height: 1;
 }
