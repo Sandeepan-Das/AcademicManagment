@@ -7,84 +7,65 @@ body {
   text-align: center;
 }
 
+.navbar-brand {
+  margin-left: 20px;
+  font-family: bignoodletitling;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#navbarNavDropdown {
+  font-family: bignoodletitling;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
 .wrapper {
-  width: 1170px;
+  width: 100%;
   margin: 0 auto;
 }
 
-header {
-  height: 100px;
-  background: #262626;
-  width: 100%;
-  z-index: 12;
-  position: fixed;
-}
-
-.logo {
-  width: 30%;
-  float: left;
-  line-height: 100px;
-}
-
-.logo a {
-  text-decoration: none;
-  font-size: 30px;
-  font-family: bignoodletitling;
-  color: #fff;
-  letter-spacing: 5px;
-}
-
-nav {
-  float: right;
-  line-height: 100px;
-}
-
-nav a {
-  text-decoration: none;
-  font-family: bignoodletitling;
-  color: #fff;
-  letter-spacing: 4px;
-  font-size: 20px;
-  margin: 0 10px;
-}
-
 .banner-area {
+  padding-top: 20px;
   width: 100%;
   height: 500px;
   position: fixed;
-  top: 100px;
+  /* top: 500px; */
   background-image: url(../assets/headerimage.jpg);
-  -webkit-background-size: contain;
-  background-size: contain;
+  -webkit-background-size: cover;
+  background-size: cover;
   background-position: center center;
-}
-
-.banner-area h2 {
-  padding-top: 8%;
-  font-size: 70px;
-  font-family: poppins;
-  text-transform: uppercase;
-  color: #fff;
+  background-repeat: no-repeat;
 }
 
 .content-area {
-  width: 100%;
-  position: relative;
   top: 450px;
+  /* align-content: center; */
+  position: relative;
   background: #ddd;
   height: 1500px;
 }
 
 .content-area h2 {
+  align-content: center;
   font-family: bignoodletitling;
   letter-spacing: 4px;
   padding-top: 30px;
-  font-size: 40px;
+  font-size: 50px;
   margin: 0;
 }
 
+.content-area h5 {
+  font-family: bignoodletitling;
+  letter-spacing: 3px;
+  font-size: 30px;
+  padding-bottom: 10px;
+}
+
 .content-area p {
-  padding: 2% 0;
+  letter-spacing: 1px;
+  padding: 1px 0;
   font-family: merienda;
-  line-height: 30px;
+  font-size: 25px;
+  line-height: 1;
 }
