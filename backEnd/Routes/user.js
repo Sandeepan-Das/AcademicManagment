@@ -8,13 +8,17 @@ const verifyLogin = require("../middlewares/verify");
 
 const hid_pass = require("../External/pass");
 const fetch_token = require("../External/token");
-const { verify } = require("jsonwebtoken");
+
 
 router.post("/register", verifyLogin, async (req, res) => {
+  var sql;
   const password = await hid_pass(req.body.password);
   const token = await fetch_token(req.isStudent, req.primaryKey);
-  var sql = "INSERT INTO userdata (name,email,password,token) VALUES (?,?,?,?)";
-  var sql2 = `SELECT * FROM userdata WHERE email=?`;
+  if (req.isStudent) {
+    sql = "INSERT INTO student (name,email,password,token) VALUES (?,?,?,?)";
+  } else {
+    sql = "INSERT INTO teacher (name,email,password,token) VALUES (?,?,?,?)";
+  }
   try {
     connection.query(
       sql,
@@ -22,20 +26,21 @@ router.post("/register", verifyLogin, async (req, res) => {
       (err, result) => {
         if (err) throw err;
         else {
-          connection.query(sql2, [req.body.email], async (err, result) => {
-            if (err) throw err;
-            else {
-              res.send({ token: result[0].token });
-            }
-          });
+          res.send({ token });
         }
       }
     );
   } catch (error) {}
 });
 
-router.post("/login", verify, async (req, res) => {
-  var sql = `SELECT * FROM userdata WHERE email=?`;
+router.post("/login", verifyLogin, async (req, res) => {
+  var sql;
+  
+  if (req.isStudent) {
+    sql = `SELECT * FROM student WHERE email=?`;
+  } else {
+    sql = `SELECT * FROM teacher WHERE email=?`;
+  }
   try {
     connection.query(sql, [req.body.email], async (err, result) => {
       if (err) throw err;
@@ -57,9 +62,6 @@ router.post("/login", verify, async (req, res) => {
     });
   } catch (err) {}
 });
-
-
-
 
 router.get("/display", async (req, res) => {
   var sql = "SELECT * FROM userdata";

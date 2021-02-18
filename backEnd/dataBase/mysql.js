@@ -1,8 +1,8 @@
 var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "mysql@sandeepan12",
-  database: "AcademicManagment",
+  host: "freedb.tech",
+  user: "freedbtech_goldFinch",
+  //password: "",
+  database: "freedbtech_AcademicManagment",
 });
 
 con.connect(async function (err) {

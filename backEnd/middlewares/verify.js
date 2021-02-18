@@ -4,8 +4,9 @@ async function verifyLogin(req, res, next) {
   if (domain != "iiit-bh.ac.in") res.send("Not from IIIT");
 
   const roll = email.split("@")[0];
+  // console.log()
 
-  if (roll[0] == "b") req.isStudent = true;
+  if (Number(roll[1]) <= 5 && Number(roll[1]) > 0) req.isStudent = true;
   else req.isStudent = false;
 
   req.primaryKey = roll;
