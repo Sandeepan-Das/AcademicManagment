@@ -1,0 +1,14 @@
+<h1>This is subjects page</h1>
+
+<% subjects.forEach(function(subject){ %>
+    <% if (subject.branch == activeButton){ %> 
+        <div>
+                <h4><%= activeButton %></h4>
+                <h4><%= subject.year %></h4>
+                <h4><%= subject.branch %></h4>
+                <h4><%= subject.subject %></h4>
+                <img src="<%= subject.image %>">
+        </div>
+    
+    <% }%>
+<% }); %>

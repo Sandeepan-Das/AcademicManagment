@@ -13,7 +13,7 @@ app.set("view engine", "ejs");
 
 //MIDDLEWARES
 app.use(cors());
-app.use(body_parser.urlencoded({ extended: false }));
+app.use(body_parser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(route);
 

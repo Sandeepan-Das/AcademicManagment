@@ -16,3 +16,4 @@ function _class(name){
       
     });
   }
+  

@@ -15,7 +15,17 @@
             <button class="branch" onclick="location.href='/branch'" style="padding-right: 120px;">BRANCH</button>
           </div>
           <div>
-            <button class="cse" style="padding-right: 90px;">CSE</button>
+            <button class="cse" value="CSE" onclick="doAction(this.value); location.href='/subject'" style="padding-right: 90px;">
+              <script type="text/javascript">
+                function doAction(value)
+                {
+                 // Don't really have anything to set...just show the value
+                 activeButton = value;
+                 
+                }
+               </script>
+              CSE
+            </button>
           </div>
           <div>
             <button class="ce" style="padding-right: 90px;">CE</button>
@@ -54,5 +64,6 @@
       
       
     <script src="../scripts/year.js"></script>
+    
 </body>
 </html>

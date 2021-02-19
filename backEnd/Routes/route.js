@@ -1,34 +1,57 @@
 const express = require("express");
 
 const router = express.Router();
+var subjects = [
+  {
+    year : "FIRST",
+    branch : "CSE",
+    subject: "DAA",
+    image: "https://taylorandfrancis.com/wp-content/uploads/2018/05/booksellers-and-agents_800_320.jpg"
+  },
+  {
+    year : "FIRST",
+    branch : "CE",
+    subject: "BME",
+    image: "https://taylorandfrancis.com/wp-content/uploads/2018/05/booksellers-and-agents_800_320.jpg"  
+  },
+  {
+    year : "SECOND",
+    branch : "CE", 
+    subject: "ENGLISH",
+    image: "https://taylorandfrancis.com/wp-content/uploads/2018/05/booksellers-and-agents_800_320.jpg"
+  }
+];
 
 router.get("/", (req, res) => {
   res.render("../frontEnd/public/home.ejs"); //kichi nuha
 });
 
 router.get("/teacher", (req, res) => {
-  var subjects = [
-    {
-      name: "DAA",
-      image:
-        "https://www.google.com/imgres?imgurl=https%3A%2F%2Fst2.depositphotos.com%2F3591429%2F12123%2Fi%2F950%2Fdepositphotos_121233588-stock-photo-woman-working-on-laptop-with.jpg&imgrefurl=https%3A%2F%2Fdepositphotos.com%2F121233588%2Fstock-photo-woman-working-on-laptop-with.html&tbnid=b8omTtsJv1ws0M&vet=12ahUKEwjeweG--enuAhU6E7cAHUbXBfkQMygJegUIARDxAQ..i&docid=9Hj6IwJ6DvED0M&w=1023&h=604&q=laptop%20study%20images&ved=2ahUKEwjeweG--enuAhU6E7cAHUbXBfkQMygJegUIARDxAQ",
-    },
-    {
-      name: "BME",
-      image:
-        "https://www.google.com/imgres?imgurl=https%3A%2F%2Fst2.depositphotos.com%2F3591429%2F12123%2Fi%2F950%2Fdepositphotos_121233588-stock-photo-woman-working-on-laptop-with.jpg&imgrefurl=https%3A%2F%2Fdepositphotos.com%2F121233588%2Fstock-photo-woman-working-on-laptop-with.html&tbnid=b8omTtsJv1ws0M&vet=12ahUKEwjeweG--enuAhU6E7cAHUbXBfkQMygJegUIARDxAQ..i&docid=9Hj6IwJ6DvED0M&w=1023&h=604&q=laptop%20study%20images&ved=2ahUKEwjeweG--enuAhU6E7cAHUbXBfkQMygJegUIARDxAQ",
-    },
-    {
-      name: "ENGLISH",
-      image:
-        "https://www.google.com/imgres?imgurl=https%3A%2F%2Fst2.depositphotos.com%2F3591429%2F12123%2Fi%2F950%2Fdepositphotos_121233588-stock-photo-woman-working-on-laptop-with.jpg&imgrefurl=https%3A%2F%2Fdepositphotos.com%2F121233588%2Fstock-photo-woman-working-on-laptop-with.html&tbnid=b8omTtsJv1ws0M&vet=12ahUKEwjeweG--enuAhU6E7cAHUbXBfkQMygJegUIARDxAQ..i&docid=9Hj6IwJ6DvED0M&w=1023&h=604&q=laptop%20study%20images&ved=2ahUKEwjeweG--enuAhU6E7cAHUbXBfkQMygJegUIARDxAQ",
-    },
-  ];
-  res.render("../frontEnd/public/teacher.ejs", { subjects: subjects }); //passing the above data which is in the form of an array in by giving it a name "subjects"
+  res.render("../frontEnd/public/teacher.ejs");  
 });
 
 router.get("/branch", (req, res) => {
-  res.render("../frontEnd/partials/branch.ejs"); //passing the above data which is in the form of an array in by giving it a name "subjects"
+  res.render("../frontEnd/partials/branch.ejs"); 
 });
+
+router.get("/subject", (req, res) => {
+  res.render("../frontEnd/public/subject.ejs", { subjects: subjects }); //passing the above data which is in the form of an array in by giving it a name "subjects"
+});
+
+router.post("/subject", function(req, res){
+  //get data from the form and add it subjects array
+  var year = req.body.yearname;
+  var branch = req.body.branchname;
+  var subject = req.body.subjectname;
+  var image = req.body.image;
+  var newSubject = {year: year, branch: branch, subject: subject, image: image}
+  subjects.push(newSubject);
+  //redirect back to subjects page
+  res.redirect("/subject");
+});
+router.get("/subject/new", function(req, res){
+  res.render("../frontEnd/public/new.ejs");
+});
+
 
 module.exports = router;
