@@ -9,7 +9,7 @@ async function verifyLogin(req, res, next) {
   if (Number(roll[1]) <= 5 && Number(roll[1]) > 0) req.isStudent = true;
   else req.isStudent = false;
 
-  req.primaryKey = roll;
+  req.primaryKey = req.body.email;
   next();
 }
 
