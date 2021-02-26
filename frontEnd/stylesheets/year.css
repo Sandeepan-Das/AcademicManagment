@@ -5,6 +5,7 @@
     background:#ddd;
     font-family:"Raleway";
   }
+  
   .tabs {
     position:absolute;
     top:50%;
@@ -54,6 +55,7 @@
   
   .tabs .tab-content > div {
     position:absolute;
+    font-size: large;
     text-align:left;
     padding:40px 20px;
     top:-200%;
@@ -72,3 +74,4 @@
     top:80px;
     transition:all 500ms ease-in-out;
   }
+  
