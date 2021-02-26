@@ -69,3 +69,11 @@ body {
   font-size: 25px;
   line-height: 1;
 }
+.jumbotron {
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 50;
+  height: 20%;
+  text-align: center;
+  color: white;
+}

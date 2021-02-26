@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subject Page</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../stylesheets/subject.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="jumbotron">
+        <div class="container">
+          <h1>Welcome to Subjects Page</h1>
+          <p>
+            You can view all the classes that you take for the respective year
+            and branch
+          </p>
+          <p>
+            <a class="btn btn-primary btn-large" href="/subject/new"
+              >Create a classroom</a
+            >
+          </p>
+        </div>
+      </header>
+
+      <div class="row text-center" style="display: flex; flex-wrap: wrap">
+        <% subjects.forEach(function(subject){ %>
+        <div class="col-md-3 col-sm-6">
+          <a href="/show">
+            <div class="thumbnail">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwwXQu1hZwcBerHRcOGAAGgk0UBmbvMl9fOQ&usqp=CAU"
+              />
+              <div class="caption">
+                <h4><%= subject.subj %></h4>
+              </div>
+            </div>
+          </a>
+        </div>
+        <% }); %>
+      </div>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>
