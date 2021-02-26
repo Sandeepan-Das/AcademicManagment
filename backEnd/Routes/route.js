@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
   res.render("../frontEnd/public/home.ejs"); //kichi nuha
 });
 
-router.post("/teacherDetails", auth, (req, res) => {
+router.post("/teacherDetails", (req, res) => {
   var sql =
     "INSERT INTO teacher_details (email,year,branch,subj) VALUES (?,?,?,?)";
   try {
@@ -27,10 +27,10 @@ router.post("/teacherDetails", auth, (req, res) => {
   } catch (error) {}
 });
 
-router.get("/teacher", auth, (req, res) => {
+router.get("/teacher", (req, res) => {
   var sql = "SELECT year FROM teacher_details WHERE email=?";
   try {
-    connection.query(sql, [req.email], (err, result) => {
+    connection.query(sql, ["somen@iiit-bh.ac.in"], (err, result) => {
       if (err) throw err;
       else {
         res.render("../frontEnd/public/teacher.ejs", { subjects: result });     
@@ -40,14 +40,14 @@ router.get("/teacher", auth, (req, res) => {
   } catch (error) {}
 });
 
-router.get("/branch/:year", auth, (req, res) => {
+router.get("/branch/:year", (req, res) => {
   const year = req.params.year;
-  var sql = "SELECT branch FROM teacher_details WHERE email=? AND year=?";
+  var sql = "SELECT DISTINCT branch FROM teacher_details WHERE email=? AND year=?";
   try {
-    connection.query(sql, [req.email, year], (err, result) => {
+    connection.query(sql, ["somen@iiit-bh.ac.in", year], (err, result) => {
       if (err) throw err;
       else {
-        res.render("../frontEnd/public/branch.ejs", { branch: result });
+        res.render("../frontEnd/public/branch.ejs", { branches: result });
         //res.send(result);
       } //will pass the branch
     });
@@ -55,12 +55,12 @@ router.get("/branch/:year", auth, (req, res) => {
   
 });
 
-router.get("/branch/:year/:branch", auth, (req, res) => {
+router.get("/branch/:year/:branch", (req, res) => {
   const year = req.params.year;
   const branch = req.params.branch;
   var sql = "SELECT subj FROM teacher_details WHERE email=? AND year=? AND branch=?";
   try {
-    connection.query(sql, [req.email, year, branch], (err, result) => {
+    connection.query(sql, ["somen@iiit-bh.ac.in", year, branch], (err, result) => {
       if (err) throw err;
       else {
         res.render("../frontEnd/public/subject.ejs", { subjects: result });

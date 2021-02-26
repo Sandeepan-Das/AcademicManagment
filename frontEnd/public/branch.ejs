@@ -14,7 +14,6 @@
   <body>
     <div class="tabs">
       <div class="tab-header">
-        <h4><%= branch.year %></h4>
         <div class="active">
           <button
             class="branch"
@@ -24,51 +23,17 @@
             BRANCH
           </button>
         </div>
-        <div>
-          <button
-            class="cse"
-            onclick="location.href='/branch/:year/cse'"
-            style="padding-right: 90px"
-          >
-            CSE
-          </button>
-        </div>
-        <div>
-          <button
-            class="ce"
-            onclick="location.href='/branch/:year/ce'"
-            style="padding-right: 90px"
-          >
-            CE
-          </button>
-        </div>
-        <div>
-          <button
-            class="it"
-            onclick="location.href='/branch/:year/it'"
-            style="padding-right: 90px"
-          >
-            IT
-          </button>
-        </div>
-        <div>
-          <button
-            class="etc"
-            onclick="location.href='/branch/:year/etc'"
-            style="padding-right: 90px"
-          >
-            ETC
-          </button>
-        </div>
-        <div>
-          <button
-            class="eee"
-            onclick="location.href='/branch/:year/eee'"
-            style="padding-right: 90px"
-          >
-            EEE
-          </button>
-        </div>
+        <% branches.forEach(function(branch){ %>
+          <div>
+            <button
+              class="<%= branch.branch %>"
+              onclick="location.href='/branch/first/<%= branch.branch %>'"
+              style="padding-right: 90px"
+            >
+              <%= branch.branch %>
+            </button>
+          </div>
+        <% }); %>
       </div>
       <div class="tab-indicator"></div>
       <div class="tab-content">
