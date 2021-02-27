@@ -42,12 +42,12 @@ router.get("/teacher", auth, (req, res) => {
 
 router.get("/branch/:year", auth, (req, res) => {
   const year = req.params.year;
-  var sql = "SELECT branch FROM teacher_details WHERE email=? AND year=?";
+  var sql = "SELECT DISTINCT branch FROM teacher_details WHERE email=? AND year=?";
   try {
     connection.query(sql, [req.email, year], (err, result) => {
       if (err) throw err;
       else {
-        res.render("../frontEnd/public/branch.ejs", { branch: result });
+        res.render("../frontEnd/public/branch.ejs", { branches: result });
         //res.send(result);
       } //will pass the branch
     });
