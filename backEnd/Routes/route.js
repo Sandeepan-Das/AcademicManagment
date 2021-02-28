@@ -10,6 +10,10 @@ router.get("/", (req, res) => {
   res.render("../frontEnd/public/home.ejs"); //kichi nuha
 });
 
+router.get("/signup", (req, res) => {
+  res.render("../frontEnd/public/signup.ejs"); //pasa ethi
+});
+
 router.post("/teacherDetails", auth, (req, res) => {
   var sql =
     "INSERT INTO teacher_details (email,year,branch,subj) VALUES (?,?,?,?)";

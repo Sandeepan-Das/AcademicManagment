@@ -4,10 +4,13 @@
 }
 
 body {
+  position: relative;
   text-align: center;
+  height: 1500px;
+  width: 100%;
 }
 
-.navbar-brand {
+/* .navbar-brand {
   margin-left: 20px;
   font-family: bignoodletitling;
   font-size: 30px;
@@ -18,7 +21,7 @@ body {
   font-family: bignoodletitling;
   font-size: 20px;
   margin-right: 10px;
-}
+} */
 
 .wrapper {
   width: 100%;
@@ -43,7 +46,7 @@ body {
   /* align-content: center; */
   position: relative;
   background: #ddd;
-  height: 1500px;
+  height: 80%;
 }
 
 .content-area h2 {
@@ -76,4 +79,18 @@ body {
   height: 20%;
   text-align: center;
   color: white;
+}
+
+footer {
+  display: flex;
+  position: relative;
+  top: 400px;
+  bottom: 0;
+  background-color: black;
+  height: 50px;
+  width: 100%;
+}
+
+footer p {
+  color: #ddd;
 }
