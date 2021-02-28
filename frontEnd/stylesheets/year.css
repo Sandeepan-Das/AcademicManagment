@@ -2,7 +2,7 @@
     box-sizing:border-box;
   }
   body {
-    background: rgb(210, 216, 195);
+    background: #DCE1E3;
     font-family:"Raleway";
   }
   
@@ -14,7 +14,7 @@
     width:100%;
     height:100%;
     padding:30px 20px;
-    background: rgb(210, 216, 195);
+    background: #DCE1E3;
     box-shadow:5px 5px 10px 5px #ccc;
     overflow:hidden;
   }
@@ -36,7 +36,7 @@
   }
   .tabs .tab-header > div:hover,
   .tabs .tab-header > div.active {
-    color:#427ef5;
+    color:#0d6efd;;
   }
   .tabs .tab-header div button {
     padding: 0;
@@ -51,7 +51,7 @@
     text-align: left;
     height:100%;
     overflow:hidden;
-    background: rgb(210, 216, 195);
+    background: #DCE1E3;
   }
   
   .tabs .tab-content > div {
@@ -70,7 +70,7 @@
     position:absolute;
     width:4px;
     height:50px;
-    background:#427ef5;
+    background:#0d6efd;;
     left:198px;
     top:80px;
     transition:all 500ms ease-in-out;

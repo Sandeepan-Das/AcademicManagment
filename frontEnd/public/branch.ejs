@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../stylesheets/year.css" />
   </head>
   <body>
+    <%- include ("../partials/header") %>
     <div class="tabs">
       <div class="tab-header">
         <div class="active">
@@ -44,10 +45,10 @@
               <div class="container">
                 <u><h1>Welcome Teachers!!</h1></u>
                 <p>
-                  On the left side of the page you can view the respective branches your teaching.And by using the below<br> button you can create your new classroom for a particular year and branch. 
+                  On the left side of the page you can view the respective branches your teaching.And by using the below button you can create your new classroom for a particular year and branch. 
                 </p>
                 <p>
-                  <a class="btn btn-primary btn-large" href="/subject/new"
+                  <a class="btn btn-primary btn-large" style="padding: 6px 12px; font-size: 14px; font-weight: 400;" href="/subject/new"
                     >New classroom</a
                   >
                 </p>
@@ -60,5 +61,6 @@
     </div>
 
     <script src="../scripts/year.js"></script>
+    <%- include ("../partials/footer") %>
   </body>
 </html>

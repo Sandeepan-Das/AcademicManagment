@@ -15,7 +15,8 @@
       href="../../stylesheets/subject.css"
     />
   </head>
-  <body>
+  <body style="background: #DCE1E3">
+    <%- include ("../partials/header") %>
     <div class="container">
       <header class="jumbotron">
         <div class="container">
@@ -25,7 +26,7 @@
             and branch
           </p>
           <p>
-            <a class="btn btn-primary btn-large" href="/branch/first"
+            <a class="btn btn-primary btn-large" style="padding: 6px 12px; font-size: 14px; font-weight: 400;" href="/branch/first"
               >Go Back</a
             >
           </p>
@@ -35,7 +36,7 @@
       <div class="row text-center" style="display: flex; flex-wrap: wrap">
         <% subjects.forEach(function(subject){ %>
         <div class="col-md-3 col-sm-6">
-          <a href="/show">
+          <a href="/show" style="text-decoration: none;">
             <div class="thumbnail">
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwwXQu1hZwcBerHRcOGAAGgk0UBmbvMl9fOQ&usqp=CAU"
@@ -50,5 +51,6 @@
       </div>
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <%- include ("../partials/footer") %>
   </body>
 </html>
