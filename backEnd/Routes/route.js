@@ -14,6 +14,7 @@ router.get("/signup", (req, res) => {
 });
 
 router.post("/teacherDetails", auth, (req, res) => {
+  console.log("A")
   var sql =
     "INSERT INTO teacher_details (email,year,branch,subj) VALUES (?,?,?,?)";
   try {
@@ -23,7 +24,8 @@ router.post("/teacherDetails", auth, (req, res) => {
       (err, result) => {
         if (err) throw err;
         else {
-          res.sendStatus(200);
+          
+          res.send({valid:"true"});
         }
       }
     );

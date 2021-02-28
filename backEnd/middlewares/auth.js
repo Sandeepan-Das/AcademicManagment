@@ -26,6 +26,7 @@ const auth = async (req, res, next) => {
 
       req.isStudent = code.isStudent;
       req.ID = user;
+      req.email=code.key;
       next();
     });
   } catch (error) {
