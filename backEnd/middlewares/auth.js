@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
+const connection = require("../dataBase/mysql");
 
 const auth = async (req, res, next) => {
-  let user;
+  var user;
   var sql;
   try {
     const token = req.header("Authorization").replace("Bearer ", "");
@@ -9,25 +10,25 @@ const auth = async (req, res, next) => {
     const code = jwt.verify(token, "secret");
 
     if (code.isStudent) {
-      sql = `SELECT * FROM student WHERE email=?`;
+      sql = `SELECT sl FROM student WHERE email=?`;
     } else {
-      sql = `SELECT * FROM teacher WHERE email=?`;
+      sql = `SELECT sl FROM teacher WHERE email=?`;
     }
 
-    try {
-      connection.query(sql, [code.key], async (err, result) => {
-        if (err) throw err;
+    await connection.query(sql, [code.key], (err, result) => {
+      if (err) throw err;
+      else {
+        if (result.length == 0) throw new Error();
         else {
-          if (result.length == 0) throw new Error();
+          user = result[0].sl;
         }
-      });
-    } catch (err) {}
+      }
 
-    req.isStudent = code.isStudent;
-    req.email = code.key;
-    
-    
-    next();
+      req.isStudent = code.isStudent;
+      req.ID = user;
+      req.email=code.key;
+      next();
+    });
   } catch (error) {
     res.status(400).send("Cannot verify the user");
   }

@@ -9,6 +9,18 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
     <link rel="stylesheet" href="../stylesheets/year.css" />
   </head>
   <body>
@@ -17,22 +29,22 @@
       <div class="tab-header">
         <div class="active"><i class="overview"></i> Overview</div>
         <div>
-          <button class="firstyear" onclick="location.href='/branch/first'">
+          <button class="firstyear" onclick="fetchBranch(`first`)">
             FIRST YEAR
           </button>
         </div>
         <div>
-          <button class="secondyear" onclick="location.href='/branch/second'">
+          <button class="secondyear" onclick="fetchBranch(`second`)">
             SECOND YEAR
           </button>
         </div>
         <div>
-          <button class="thirdyear" onclick="location.href='/branch/third'">
+          <button class="thirdyear" onclick="fetchBranch(`third`)">
             THIRD YEAR
           </button>
         </div>
         <div>
-          <button class="fourthyear" onclick="location.href='/branch/fourth'">
+          <button class="fourthyear" onclick="fetchBranch(`fourth`)">
             FOURTH YEAR
           </button>
         </div>
@@ -59,6 +71,8 @@
     </div>
 
     <script src="../scripts/year.js"></script>
-    <%- include ("../partials/header") %>
+    <script src="../scripts/verify.js"></script>
+    <script src="../scripts/teacher.js"></script>
+    <%- include ("../partials/footer") %>
   </body>
 </html>
