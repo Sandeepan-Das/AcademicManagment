@@ -2,7 +2,7 @@ const password=process.env.password;
 var con = mysql.createConnection({
   host: "freedb.tech",
   user: "freedbtech_goldFinch",
-  // password:,
+  password:"helloworld",
   database: "freedbtech_AcademicManagment",
 });
 

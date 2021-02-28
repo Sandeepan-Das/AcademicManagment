@@ -1,10 +1,10 @@
 const express = require("express");
-
+const base64 = require("base-64");
 const router = express.Router();
 
 const connection = require("../dataBase/mysql");
 const auth = require("../middlewares/auth");
-
+const fetchEmail = require("../External/decodeEmail");
 
 router.get("/", (req, res) => {
   res.render("../frontEnd/public/home.ejs"); //kichi nuha
@@ -31,22 +31,28 @@ router.post("/teacherDetails", auth, (req, res) => {
   } catch (error) {}
 });
 
-router.get("/teacher", auth, (req, res) => {
-  var sql = "SELECT year FROM teacher_details WHERE email=?";
-  try {
-    connection.query(sql, [req.email], (err, result) => {
-      if (err) throw err;
-      else {
-        res.render("../frontEnd/public/teacher.ejs", { subjects: result });     
-        //res.send(result);
-      }   //passing the the year
-    });
-  } catch (error) {}
+router.get("/teacher", async (req, res) => {
+  var sql = "SELECT * FROM teacher_details WHERE email=?";
+  connection.query("CALL fetch_email(?)", [req.query.ID], (err, result) => {
+    if (err) throw err;
+    else {
+      
+      connection.query(sql, [result[0][0].email], (err, result) => {
+        if (err) throw err;
+        else {
+          
+          res.render("../frontEnd/public/teacher.ejs", { subjects: result });
+          
+        } 
+      });
+    }
+  });
 });
 
 router.get("/branch/:year", auth, (req, res) => {
   const year = req.params.year;
-  var sql = "SELECT DISTINCT branch FROM teacher_details WHERE email=? AND year=?";
+  var sql =
+    "SELECT DISTINCT branch FROM teacher_details WHERE email=? AND year=?";
   try {
     connection.query(sql, [req.email, year], (err, result) => {
       if (err) throw err;
@@ -56,13 +62,13 @@ router.get("/branch/:year", auth, (req, res) => {
       } //will pass the branch
     });
   } catch (error) {}
-  
 });
 
 router.get("/branch/:year/:branch", auth, (req, res) => {
   const year = req.params.year;
   const branch = req.params.branch;
-  var sql = "SELECT subj FROM teacher_details WHERE email=? AND year=? AND branch=?";
+  var sql =
+    "SELECT subj FROM teacher_details WHERE email=? AND year=? AND branch=?";
   try {
     connection.query(sql, [req.email, year, branch], (err, result) => {
       if (err) throw err;
@@ -72,23 +78,24 @@ router.get("/branch/:year/:branch", auth, (req, res) => {
       } //will pass the subjects
     });
   } catch (error) {}
-  
 });
 
+router.get("/verify", auth, (req, res) => {
+  console.log(req.ID);
+  res.send({ ID: req.ID, isStudent: req.isStudent });
+});
 
-
-
-router.post("/subject", function(req, res){
+router.post("/subject", function (req, res) {
   //get data from the form and add it subjects array
   //redirect back to subjects page
   res.redirect("/subject");
 });
 
-router.get("/subject/new", function(req, res){
+router.get("/subject/new", function (req, res) {
   res.render("../frontEnd/public/new.ejs");
 });
 
-router.get("/show", function(req, res){
+router.get("/show", function (req, res) {
   res.render("../frontEnd/public/show.ejs");
 });
 module.exports = router;
