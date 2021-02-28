@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../stylesheets/year.css" />
   </head>
   <body>
+    <%- include ("../partials/header") %>
     <div class="tabs">
       <div class="tab-header">
         <div class="active">
@@ -24,15 +25,15 @@
           </button>
         </div>
         <% branches.forEach(function(branch){ %>
-          <div>
-            <button
-              class="<%= branch.branch %>"
-              onclick="location.href='/branch/first/<%= branch.branch %>'"
-              style="padding-right: 90px"
-            >
-              <%= branch.branch %>
-            </button>
-          </div>
+        <div>
+          <button
+            class="<%= branch.branch %>"
+            onclick="fetchSubject(`<%= branch.branch %>`)"
+            style="padding-right: 90px"
+          >
+            <%= branch.branch %>
+          </button>
+        </div>
         <% }); %>
       </div>
       <div class="tab-indicator"></div>
@@ -44,7 +45,10 @@
               <div class="container">
                 <u><h1>Welcome Teachers!!</h1></u>
                 <p>
-                  On the left side of the page you can view the respective branches your teaching.And by using the below<br> button you can create your new classroom for a particular year and branch. 
+                  On the left side of the page you can view the respective
+                  branches your teaching.And by using the below<br />
+                  button you can create your new classroom for a particular year
+                  and branch.
                 </p>
                 <p>
                   <a class="btn btn-primary btn-large" href="/subject/new"
@@ -54,11 +58,13 @@
               </div>
             </header>
           </div>
-          
         </div>
       </div>
     </div>
 
     <script src="../scripts/year.js"></script>
+    <script src="../scripts/verify.js"></script>
+    <script src="../scripts/branch.js"></script>
+    <%- include ("../partials/footer") %>
   </body>
 </html>

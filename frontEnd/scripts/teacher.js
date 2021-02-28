@@ -1,17 +1,10 @@
-// function fetchYear(year) {
-//   $.ajax({
-//     url: `/branch/${year}`,
-//     type: "GET",
-//     headers: { Authorization: localStorage.getItem("token") },
-//     success: function (data) {
-//       if (!data.isStudent) location.href = `/teacher?ID=${data.email}`;
-//       // else to be changed
-//     },
-//   });
-// }
+function fetchBranch(year) {
+  const ID = fetchURL();
 
-const params = new URLSearchParams(window.location.search);
-console.log(window.location.search)
-for (const param of params) {
-  console.log(param);
+  location.href = `/branch?ID=${ID}&year=${year}`;
+}
+
+function fetchURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("ID");
 }
