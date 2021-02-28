@@ -1,5 +1,4 @@
 const express = require("express");
-const base64 = require("base-64");
 const router = express.Router();
 
 const connection = require("../dataBase/mysql");
@@ -14,7 +13,7 @@ router.get("/signup", (req, res) => {
 });
 
 router.post("/teacherDetails", auth, (req, res) => {
-  console.log("A")
+  
   var sql =
     "INSERT INTO teacher_details (email,year,branch,subj) VALUES (?,?,?,?)";
   try {
