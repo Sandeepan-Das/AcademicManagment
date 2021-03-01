@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
   res.render("../frontEnd/public/home.ejs"); //kichi nuha
 });
 
-router.get("/signup", (req, res) => {
+router.get("/signUp", (req, res) => {
   res.render("../frontEnd/public/signup.ejs"); //pasa ethi
 });
 
@@ -36,10 +36,11 @@ router.get("/teacher", async (req, res) => {
   connection.query("CALL fetch_email(?)", [req.query.ID], (err, result) => {
     if (err) throw err;
     else {
-      connection.query(sql, [result[0][0].email], (err, result) => {
+      
+      connection.query(sql, [result[0][0].email], (err, result2) => {
         if (err) throw err;
         else {
-          res.render("../frontEnd/public/teacher.ejs", { subjects: result });
+          res.render("../frontEnd/public/teacher.ejs", {name:result[0][0].name});
         }
       });
     }

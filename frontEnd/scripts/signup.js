@@ -1,6 +1,6 @@
 const form = document.getElementById("form");
 const fname = document.getElementById("fname");
-const lname = document.getElementById("lname");
+
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const password2 = document.getElementById("password2");
@@ -14,8 +14,8 @@ form.addEventListener("submit", (e) => {
 
 function checkInputs() {
   // trim to remove the whitespaces
-  const fnameValue = fname.value.trim();
-  const lnameValue = lname.value.trim();
+  const fnameValue = fname.value;
+
   const emailValue = email.value.trim();
   const passwordValue = password.value.trim();
   const password2Value = password2.value.trim();
@@ -24,12 +24,6 @@ function checkInputs() {
     setErrorFor(fname, "First name cannot be blank");
   } else {
     setSuccessFor(fname);
-  }
-
-  if (lnameValue === "") {
-    setErrorFor(lname, "last name cannot be blank");
-  } else {
-    setSuccessFor(lname);
   }
 
   if (emailValue === "") {
@@ -55,6 +49,7 @@ function checkInputs() {
   } else {
     setSuccessFor(password2);
   }
+  sendData();
 }
 
 function setErrorFor(input, message) {
@@ -84,4 +79,26 @@ function isEmail(email) {
     }
   }
   return false;
+}
+
+function sendData() {
+  var person = {
+    name: fname.value,
+
+    email: email.value,
+
+    password: password.value,
+  };
+  console.log(person);
+  $.ajax({
+    url: "/users/register",
+    type: "post",
+    contentType: "application/json",
+    success: function (data) {
+      window.localStorage.setItem("token",data.token) ;
+      location.href="/"
+    },
+    error: function (xhr, ajaxOptions, thrownError) {},
+    data: JSON.stringify(person),
+  });
 }
