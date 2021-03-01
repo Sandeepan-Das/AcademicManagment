@@ -1,42 +1,64 @@
-body{
-    width: 100%;
-    height: 1000px;
-    margin: 0;
-    padding: 0;
-    background: #4CA1AF;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #C4E0E5, #4CA1AF);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #C4E0E5, #4CA1AF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+body {
+  width: 100%;
+  height: 1000px;
+  margin: 0;
+  padding: 0;
+  background: #4ca1af; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #c4e0e5,
+    #4ca1af
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #c4e0e5,
+    #4ca1af
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-
-background-repeat: no-repeat;
-background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
-#wrap{
-        padding-top: 200px;
-
+#wrap {
+  padding-top: 200px;
 }
 
-
-#form{
-    margin: 0 auto;
-    height: 100%;
+#form {
+  margin: 0 auto;
+  height: 100%;
 }
 
-legend{
-	color:#141823;
-	font-size:25px;
-	font-weight:bold;
+.form {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  width: 1000px;
+  max-width: 100%;
 }
 
-label{
-    font-size: 15px;
-    color: black;
-    font-style: bignoodletitling;
+.header1 {
+  border-bottom: 1px solid #f0f0f0;
+  background-color: #f7f7f7;
+  position: relative;
+  height: 50px;
+}
+
+legend {
+  color: #141823;
+  font-size: 25px;
+  font-weight: bold;
+  position: relative;
+  left: 10px;
+}
+
+label {
+  font-size: 15px;
+  color: black;
+  font-style: bignoodletitling;
 }
 
 .signup-btn {
-
   background: #79bc64;
   background-image: -webkit-linear-gradient(top, #79bc64, #578843);
   background-image: -moz-linear-gradient(top, #79bc64, #578843);
@@ -54,7 +76,7 @@ label{
   color: #ffffff;
   font-size: 20px;
   padding: 10px 20px 10px 20px;
-  border: solid #3b6e22  1px;
+  border: solid #3b6e22 1px;
   text-decoration: none;
 }
 
@@ -67,21 +89,23 @@ label{
   background-image: linear-gradient(to bottom, #79bc64, #5e7056);
   text-decoration: none;
 }
-.navbar-default .navbar-brand{
-		color:#fff;
-		font-size:30px;
-		font-weight:bold;
-	}
-.form .form-control { margin-bottom: 10px; }
-@media (min-width:768px) {
-	#home{
-		margin-top:50px;
-	}
-	#home .slogan{
-		color: #0e385f;
-		line-height: 29px;
-		font-weight:bold;
-	}
+.navbar-default .navbar-brand {
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+}
+.form .form-control {
+  margin-bottom: 10px;
+}
+@media (min-width: 768px) {
+  #home {
+    margin-top: 50px;
+  }
+  #home .slogan {
+    color: #0e385f;
+    line-height: 29px;
+    font-weight: bold;
+  }
 }
 
 footer {
@@ -97,4 +121,95 @@ footer {
 
 footer p {
   color: #ddd;
+}
+
+.form-control {
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  position: relative;
+  border: none;
+}
+
+.form-control label {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.form-control input {
+  border: 2px solid #f0f0f0;
+  border-radius: 4px;
+  display: block;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px;
+  width: 100%;
+}
+
+.form-control input:focus {
+  outline: 0;
+  border-color: #777;
+}
+
+.form-control.success input {
+  border-color: #2ecc71;
+}
+
+.form-control.error input {
+  border-color: #e74c3c;
+}
+
+.form-control i {
+  visibility: hidden;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.form-control.success i.fa-check-circle {
+  color: #2ecc71;
+  visibility: visible;
+}
+
+.form-control.error i.fa-exclamation-circle {
+  color: #e74c3c;
+  visibility: visible;
+}
+
+.flname {
+  color: #e74c3c;
+  position: relative;
+  left: 3px;
+  /* bottom: 0.01px; */
+  /* top: 30px; */
+  visibility: hidden;
+}
+
+.eps {
+  color: #e74c3c;
+  position: absolute;
+  bottom: 0;
+  left: 14px;
+  visibility: hidden;
+}
+
+.form-control.error small {
+  visibility: visible;
+}
+
+.form button {
+  background-color: #8e44ad;
+  border: 2px solid #8e44ad;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.end {
+  margin-left: 10px;
+  margin-right: 10px;
 }
