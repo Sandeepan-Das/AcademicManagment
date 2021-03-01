@@ -12,6 +12,10 @@ router.get("/signUp", (req, res) => {
   res.render("../frontEnd/public/signup.ejs"); //pasa ethi
 });
 
+router.get("/login", (req, res) => {
+  res.render("../frontEnd/public/login.ejs"); //exist
+});
+
 router.post("/teacherDetails", auth, (req, res) => {
   
   var sql =

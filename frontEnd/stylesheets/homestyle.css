@@ -6,7 +6,7 @@
 body {
   position: relative;
   text-align: center;
-  height: 1500px;
+  /* height: 1500px; */
   width: 100%;
 }
 
@@ -43,10 +43,10 @@ body {
 
 .content-area {
   top: 450px;
-  /* align-content: center; */
+  align-content: center;
   position: relative;
   background: #ddd;
-  height: 80%;
+  height: 1000px;
 }
 
 .content-area h2 {
@@ -71,14 +71,6 @@ body {
   font-family: merienda;
   font-size: 25px;
   line-height: 1;
-}
-.jumbotron {
-  background-position: center;
-  background-size: cover;
-  margin-bottom: 50;
-  height: 20%;
-  text-align: center;
-  color: white;
 }
 
 footer {
