@@ -5,6 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Show page</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"                       
+      type="text/css"
+      href="../stylesheets/show.css"
+    />
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <div class="container">
+        <h1 style="margin-top: 100px; margin-bottom: 4px; margin-left:70px; color:black;">Students</h2>
+        <hr style="margin-top:10px; margin-bottom:10px; color:black;">
+      </div>
+      <ul class="responsive-table">
+        <header class="jumbotron">      
+          <div class="container">
+            <li class="table-header">
+              <div class="col col-1">Id</div>
+              <div class="col col-2">Name</div>
+            </li>
+            <% students.forEach(function(student){ %>
+              <a href="/marks">
+                <li class="table-row">
+                  <div class="col col-1" data-label="Id"><%= student.roll %></div>
+                  <div class="col col-2" data-label="Name"><%= student.name %></div>
+                </li>
+              </a>
+            <% }); %>
+          </div>
+        </header>
+      </ul>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
 </html>
