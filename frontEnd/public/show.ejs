@@ -35,7 +35,7 @@
               <div class="col col-2">Name</div>
             </li>
             <% students.forEach(function(student){ %>
-              <a href="/marks">
+              <a onclick="fetchStudDetails('<%= student.roll %>')">
                 <li class="table-row">
                   <div class="col col-1" data-label="Id"><%= student.roll %></div>
                   <div class="col col-2" data-label="Name"><%= student.name %></div>
@@ -47,5 +47,6 @@
       </ul>
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="../scripts/show.js"></script>
   </body>
 </html>

@@ -41,7 +41,7 @@
       <div class="row text-center" style="display: flex; flex-wrap: wrap">
         <% subjects.forEach(function(subject){ %>
         <div class="col-md-3 col-sm-6">
-          <a href="/show">
+          <a onclick="fetchShow('<%= subject.subj %>')">
             <div class="thumbnail">
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwwXQu1hZwcBerHRcOGAAGgk0UBmbvMl9fOQ&usqp=CAU"
@@ -56,5 +56,6 @@
       </div>
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="../scripts/subj.js"></script>
   </body>
 </html>
