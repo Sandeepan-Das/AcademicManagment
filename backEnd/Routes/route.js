@@ -3,6 +3,71 @@ const router = express.Router();
 
 const connection = require("../dataBase/mysql");
 const auth = require("../middlewares/auth");
+var students = [
+  {
+    no: "1",
+    roll : "B119046",
+    name : "Sandeepan Das",
+    quiz : "15",
+    ta : "4",
+    midsem : "24",
+    endsem : "43"
+  },
+  {
+    no: "2",
+    roll : "B119057",
+    name : "Somen Sahoo",
+    quiz : "15",
+    ta : "4",
+    midsem : "24",
+    endsem : "43"
+  },
+  {
+    no: "3",
+    roll : "B119049",
+    name : "Satyabrata Singh",
+    quiz : "15",
+    ta : "4",
+    midsem : "24",
+    endsem : "43"
+  },
+  {
+    no: "4",
+    roll : "B119036",
+    name : "Nageshwar Murmu",
+    quiz : "15",
+    ta : "4",
+    midsem : "24",
+    endsem : "43"
+  },
+  {
+    no: "5",
+    roll : "B119036",
+    name : "Nageshwar Murmu",
+    quiz : "15",
+    ta : "4",
+    midsem : "24",
+    endsem : "43"
+  },
+  {
+    no: "6",
+    roll : "B119036",
+    name : "Nageshwar Murmu",
+    quiz : "15",
+    ta : "4",
+    midsem : "24",
+    endsem : "43"
+  },
+  {
+    no: "7",
+    roll : "B119036",
+    name : "Nageshwar Murmu",
+    quiz : "15",
+    ta : "4",
+    midsem : "24",
+    endsem : "43"
+  }
+];
 
 router.get("/", (req, res) => {
   res.render("../frontEnd/public/home.ejs"); //kichi nuha
@@ -102,6 +167,10 @@ router.get("/subject/new", function (req, res) {
 });
 
 router.get("/show", function (req, res) {
-  res.render("../frontEnd/public/show.ejs");
+  res.render("../frontEnd/public/show.ejs", {students: students});
+});
+
+router.get("/marks", function (req, res) {
+  res.render("../frontEnd/public/marks.ejs", {students: students} );
 });
 module.exports = router;
