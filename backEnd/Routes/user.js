@@ -22,7 +22,6 @@ router.post("/register", verifyLogin, async (req, res) => {
     sql = `INSERT INTO student (name,email,password,token,branch,year,roll) VALUES (?,?,?,?,'${
       details.b
     }','${details.yr}','${req.body.email.split("@")[0]}')`;
-    console.log(subj_details[details.yr]);
   } else {
     sql = "INSERT INTO teacher (name,email,password,token) VALUES (?,?,?,?)";
   }
@@ -33,15 +32,17 @@ router.post("/register", verifyLogin, async (req, res) => {
       (err, result) => {
         if (err) throw err;
         else {
-          subj_details[details.yr].forEach((element) => {
-            connection.query(
-              "INSERT INTO student_mark_details (email,subject) VALUES (?,?);",
-              [req.body.email.split("@")[0], element],
-              (err, result) => {
-                if (err) throw err;
-              }
-            );
-          });
+          if (req.isStudent) {
+            subj_details[details.yr].forEach((element) => {
+              connection.query(
+                "INSERT INTO student_mark_details (email,subject) VALUES (?,?);",
+                [req.body.email.split("@")[0], element],
+                (err, result) => {
+                  if (err) throw err;
+                }
+              );
+            });
+          }
 
           res.send({ token });
         }
@@ -64,7 +65,6 @@ router.post("/login", verifyLogin, async (req, res) => {
       else {
         if (result.length == 0) res.sendStatus(404);
         else {
-          console.log(result);
           const matchPass = await bcryptjs.compare(
             req.body.password,
             result[0].password

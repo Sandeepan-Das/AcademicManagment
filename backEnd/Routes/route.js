@@ -169,10 +169,47 @@ router.get("/subject/new", function (req, res) {
 });
 
 router.get("/show", function (req, res) {
-  res.render("../frontEnd/public/show.ejs", { students: students });
+  var sql = "SELECT roll,name FROM class_student WHERE subject=?";
+  connection.query(sql, [req.query.subj], (err, result) => {
+    if (err) throw err;
+    else {
+      console.log(result);
+      res.render("../frontEnd/public/show.ejs", { students: result });
+    }
+  });
 });
 
 router.get("/marks", function (req, res) {
-  res.render("../frontEnd/public/marks.ejs", { students: students });
+  var sql =
+    "SELECT roll,midSem,endSem,quiz,TA FROM student_mark_details WHERE roll=? AND subject=?";
+  connection.query(sql, [req.query.roll, req.query.subj], (err, result) => {
+    if (err) throw err;
+    else {
+      res.render("../frontEnd/public/marks.ejs", { students: result });
+    }
+  });
+});
+
+router.post("/submitMarks", (req,res) => {
+  
+  var sql =
+    "UPDATE student_mark_details SET midSem=?,endSem=?,quiz=?,TA=?  WHERE roll=? AND subject=?";
+  connection.query(
+    sql,
+    [
+      req.body.midSem,
+      req.body.endSem,
+      req.body.quiz,
+      req.body.TA,
+      req.query.roll,
+      req.query.subj,
+    ],
+    (err, result) => {
+      if (err) throw err;
+      else {
+        res.send({});
+      }
+    }
+  );
 });
 module.exports = router;

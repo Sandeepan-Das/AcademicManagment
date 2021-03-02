@@ -7,14 +7,14 @@
     <title>Marks Page</title>
 </head>
 <body id="body">
-    
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
         <div id="wrapper">
             <table align='center' cellspacing=1 cellpadding=1 id="mytable" border=1>
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
+                        <!-- <th>Name</th> -->
                         <th>Quiz</th>
                         <th>TA</th>
                         <th>Midsem</th>
@@ -26,11 +26,11 @@
                     <% students.forEach(function(student){ %>
                         <tr>
                             <td><%= student.roll %></td>
-                            <td><%= student.name %></td>
+                            <!-- <td><%= student.name %></td> -->
                             <td id="quiz_row<%= student.no %>"><%= student.quiz %></td>
-                            <td id="ta_row<%= student.no %>"><%= student.ta %></td>
-                            <td id="midsem_row<%= student.no %>"><%= student.midsem %></td>
-                            <td id="endsem_row<%= student.no %>"><%= student.endsem %></td>
+                            <td id="ta_row<%= student.no %>"><%= student.TA %></td>
+                            <td id="midsem_row<%= student.no %>"><%= student.midSem %></td>
+                            <td id="endsem_row<%= student.no %>"><%= student.endSem %></td>
                             <td><input type="button" id="edit_button<%= student.no %>" value="Edit" class="edit" onclick="edit_row('<%= student.no %>')">
                                 <input type="button" id="save_button<%= student.no %>" value="Save" class="save" onclick="save_row('<%= student.no %>')"></td>
                         </tr>
