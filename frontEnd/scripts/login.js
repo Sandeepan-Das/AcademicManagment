@@ -1,7 +1,9 @@
 const form = document.getElementById("form");
-const uid = document.getElementById("uid");
+const email = document.getElementById("uid");
 const password = document.getElementById("password");
-// var submit = document.getElementById("submit");
+
+// demo email: userid@iiit-bh.ac.in
+// demo password: user057
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -9,28 +11,35 @@ form.addEventListener("submit", (e) => {
   checkInputs();
 });
 
-function checkInputs() {
-  // trim to remove the whitespaces
 
+
+function checkInputs() {
+
+  // trim to remove the whitespaces
   const emailValue = email.value.trim();
   const passwordValue = password.value.trim();
 
   if (emailValue === "") {
     setErrorFor(email, "Email ID cannot be blank");
   } else if (!isEmail(emailValue)) {
-    setErrorFor(email, 'Must be in "abc@iiit-bh.ac.in" format');
+    setErrorFor(email, "check ur email id");
   } else {
     setSuccessFor(email);
   }
 
+  console.log(password);
   if (passwordValue === "") {
-    setErrorFor(password, "Password cannot be blank");
-  } else if (passwordValue.length < 6) {
-    setErrorFor(password, "Min 6 characters needed");
+    // console.log(passwordValue);
+    setErrorFor(password, "Input Password");
+  } else if (emailValue === "") {
+    setErrorFor(password, "first input email");
+  } else if (isEmail(emailValue)) {
+    if (passwordValue != "userid057")
+      setErrorFor(password, "incorrect password");
+    else setSuccessFor(password);
   } else {
     setSuccessFor(password);
   }
-
 }
 
 function setErrorFor(input, message) {
@@ -46,3 +55,16 @@ function setSuccessFor(input) {
 }
 
 
+function isEmail(email) {
+  var pos = email.indexOf("@");
+  var str = email.substring(pos);
+  if (str === "@iiit-bh.ac.in") {
+    if (email === "userid@iiit-bh.ac.in") {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  return false;
+}
