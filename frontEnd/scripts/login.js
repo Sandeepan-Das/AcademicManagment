@@ -2,19 +2,13 @@ const form = document.getElementById("form");
 const email = document.getElementById("uid");
 const password = document.getElementById("password");
 
-// demo email: userid@iiit-bh.ac.in
-// demo password: user057
-
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
   checkInputs();
 });
 
-
-
 function checkInputs() {
-
   // trim to remove the whitespaces
   const emailValue = email.value.trim();
   const passwordValue = password.value.trim();
@@ -22,23 +16,16 @@ function checkInputs() {
   if (emailValue === "") {
     setErrorFor(email, "Email ID cannot be blank");
   } else if (!isEmail(emailValue)) {
-    setErrorFor(email, "check ur email id");
-  } else {
-    setSuccessFor(email);
+    setErrorFor(email, "Must be in 'abc@iiit-bh.ac.in' format");
   }
 
-  console.log(password);
   if (passwordValue === "") {
     // console.log(passwordValue);
     setErrorFor(password, "Input Password");
   } else if (emailValue === "") {
     setErrorFor(password, "first input email");
-  } else if (isEmail(emailValue)) {
-    if (passwordValue != "userid057")
-      setErrorFor(password, "incorrect password");
-    else setSuccessFor(password);
   } else {
-    setSuccessFor(password);
+    sendData();
   }
 }
 
@@ -54,17 +41,35 @@ function setSuccessFor(input) {
   formControl.className = "form-control success";
 }
 
-
 function isEmail(email) {
   var pos = email.indexOf("@");
   var str = email.substring(pos);
-  if (str === "@iiit-bh.ac.in") {
-    if (email === "userid@iiit-bh.ac.in") {
-      return true;
-    }
-    else {
-      return false;
-    }
+  if (str !== "@iiit-bh.ac.in") {
+    return false;
   }
-  return false;
+}
+
+function sendData() {
+  var person = {
+    email: email.value,
+
+    password: password.value,
+  };
+  console.log(person);
+  $.ajax({
+    url: "/users/login",
+    type: "post",
+    contentType: "application/json",
+    success: function (data) {
+      window.localStorage.setItem("token", data.token);
+      location.href = "/";
+      setSuccessFor(email);
+      setSuccessFor(password);
+    },
+    error: function (xhr, ajaxOptions, thrownError) {
+      setErrorFor(email, "wrong Email or password");
+      setErrorFor(password, "wrong Email or password");
+    },
+    data: JSON.stringify(person),
+  });
 }
