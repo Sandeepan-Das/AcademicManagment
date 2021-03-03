@@ -3,6 +3,8 @@ const router = express.Router();
 
 const connection = require("../dataBase/mysql");
 const auth = require("../middlewares/auth");
+const extract = require("../staticdB/subj");
+
 var students = [
   {
     no: "1",
@@ -153,7 +155,6 @@ router.get("/subject", (req, res) => {
     }
   });
 });
-
 router.get("/verify", auth, (req, res) => {
   res.send({ ID: req.ID, isStudent: req.isStudent });
 });
@@ -212,4 +213,8 @@ router.post("/submitMarks", (req,res) => {
     }
   );
 });
+
+// router.get("/student", function (req, res) {
+//   res.render("../frontEnd/public/student_subject.ejs");
+// });
 module.exports = router;
