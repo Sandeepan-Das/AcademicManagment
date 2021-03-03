@@ -35,7 +35,7 @@ router.post("/register", verifyLogin, async (req, res) => {
           if (req.isStudent) {
             subj_details[details.yr].forEach((element) => {
               connection.query(
-                "INSERT INTO student_mark_details (email,subject) VALUES (?,?);",
+                "INSERT INTO student_mark_details (roll,subject) VALUES (?,?);",
                 [req.body.email.split("@")[0], element],
                 (err, result) => {
                   if (err) throw err;
