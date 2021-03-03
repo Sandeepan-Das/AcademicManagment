@@ -21,14 +21,12 @@
       href="../../stylesheets/subject.css"
     />
   </head>
-  <body style="background-color: #DCE1E3;">
+  <body style="background-color: #dce1e3">
     <div class="container">
       <header class="jumbotron">
         <div class="container">
-          <h1>Welcome to Subjects Page</h1>
-          <p>
-            You can view all the subjects that you are studying
-          </p>
+          <h1>Welcome <%=name%>!!!</h1>
+          <p>You can view all the subjects that you are studying</p>
           <!-- <p>
             <a class="btn btn-primary btn-large" href="/branch/first"
               >Go Back</a
@@ -40,13 +38,13 @@
       <div class="row text-center" style="display: flex; flex-wrap: wrap">
         <% subjects.forEach(function(subject){ %>
         <div class="col-md-3 col-sm-6">
-          <a onclick="fetchShow('<%= subject.subj %>')">
+          <a onclick="fetchShow('<%= subject %>')">
             <div class="thumbnail">
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwwXQu1hZwcBerHRcOGAAGgk0UBmbvMl9fOQ&usqp=CAU"
               />
               <div class="caption">
-                <h4><%= subject.subject %></h4>
+                <h4><%= subject %></h4>
               </div>
             </div>
           </a>
@@ -55,6 +53,6 @@
       </div>
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="../scripts/subj.js"></script>
+    <script src="../scripts/studSubj.js"></script>
   </body>
 </html>

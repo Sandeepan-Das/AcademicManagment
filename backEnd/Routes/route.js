@@ -3,7 +3,9 @@ const router = express.Router();
 
 const connection = require("../dataBase/mysql");
 const auth = require("../middlewares/auth");
-const extract = require("../staticdB/subj");
+
+const fetchYear = require("../staticdB/subj");
+const extract = require("../staticdB/subj_details.json");
 
 var students = [
   {
@@ -191,8 +193,7 @@ router.get("/marks", function (req, res) {
   });
 });
 
-router.post("/submitMarks", (req,res) => {
-  
+router.post("/submitMarks", (req, res) => {
   var sql =
     "UPDATE student_mark_details SET midSem=?,endSem=?,quiz=?,TA=?  WHERE roll=? AND subject=?";
   connection.query(
@@ -214,7 +215,21 @@ router.post("/submitMarks", (req,res) => {
   );
 });
 
-// router.get("/student", function (req, res) {
-//   res.render("../frontEnd/public/student_subject.ejs");
-// });
+router.get("/student", function (req, res) {
+  const ID = req.query.ID;
+  var sql = "SELECT roll,name FROM student WHERE sl=?";
+  connection.query(sql, [ID], (err, result) => {
+    const data = fetchYear(result[0].roll);
+    const subjArray = extract[data.yr];
+    console.log(subjArray);
+    res.render("../frontEnd/public/student_subject.ejs", {
+      subjects: subjArray,
+      name: result[0].name,
+    });
+  });
+});
+
+router.get("/studMark", (req, res) => {
+
+});
 module.exports = router;
