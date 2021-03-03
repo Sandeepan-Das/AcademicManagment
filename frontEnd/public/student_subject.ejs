@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subject Page</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../stylesheets/subject.css"
+    />
+  </head>
+  <body style="background-color: #DCE1E3;">
+    <div class="container">
+      <header class="jumbotron">
+        <div class="container">
+          <h1>Welcome to Subjects Page</h1>
+          <p>
+            You can view all the subjects that you are studying
+          </p>
+          <!-- <p>
+            <a class="btn btn-primary btn-large" href="/branch/first"
+              >Go Back</a
+            >
+          </p> -->
+        </div>
+      </header>
+
+      <div class="row text-center" style="display: flex; flex-wrap: wrap">
+        <% subjects.forEach(function(subject){ %>
+        <div class="col-md-3 col-sm-6">
+          <a onclick="fetchShow('<%= subject.subj %>')">
+            <div class="thumbnail">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwwXQu1hZwcBerHRcOGAAGgk0UBmbvMl9fOQ&usqp=CAU"
+              />
+              <div class="caption">
+                <h4><%= subject.subject %></h4>
+              </div>
+            </div>
+          </a>
+        </div>
+        <% }); %>
+      </div>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="../scripts/subj.js"></script>
+  </body>
+</html>
