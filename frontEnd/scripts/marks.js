@@ -52,7 +52,6 @@ function save_row(no) {
   document.getElementById("edit_button" + no).style.display = "block";
   document.getElementById("save_button" + no).style.display = "none";
 }
-
 function post_data(params) {
   const data = fetchURL();
   $.ajax({
@@ -78,3 +77,43 @@ function fetchURL() {
     roll: params.get("roll"),
   };
 }
+
+
+
+
+
+//attendance
+function edit_present_row(no) {
+  document.getElementById("edit_button2" + no).style.display = "none";
+  document.getElementById("save_button2" + no).style.display = "block";
+
+  var present = document.getElementById("days_present_row" + no);
+  var total = document.getElementById("total_days_row" + no);
+  
+  var present_data = present.innerHTML;
+  var total_data = total.innerHTML;
+
+  present.innerHTML =
+    "<input type='text' id='present_text" + no + "' value='" + present_data + "'>";
+  total.innerHTML =
+    "<input type='text' id='total_text" + no + "' value='" + total_data + "'>";
+}
+
+function save_total_row(no) {
+  var present_val = document.getElementById("present_text" + no).value;
+  var total_val = document.getElementById("total_text" + no).value;
+  
+  var result = {
+    present: present_val,
+    total: total_val,
+  };
+
+  post_data2(result);
+  document.getElementById("days_present_row" + no).innerHTML = present_val;
+  document.getElementById("total_days_row" + no).innerHTML = total_val;
+ 
+
+  document.getElementById("edit_button2" + no).style.display = "block";
+  document.getElementById("save_button2" + no).style.display = "none";
+}
+

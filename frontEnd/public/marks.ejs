@@ -10,7 +10,7 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
         <div id="wrapper">
-            <table align='center' cellspacing=1 cellpadding=1 id="mytable" border=1>
+            <table style="margin-top: 40px;" align='center' cellspacing=1 cellpadding=1 id="mytable" border=1>
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -32,7 +32,31 @@
                             <td id="midsem_row<%= student.no %>"><%= student.midSem %></td>
                             <td id="endsem_row<%= student.no %>"><%= student.endSem %></td>
                             <td><input type="button" id="edit_button<%= student.no %>" value="Edit" class="edit" onclick="edit_row('<%= student.no %>')">
-                                <input type="button" id="save_button<%= student.no %>" value="Save" class="save" onclick="save_row('<%= student.no %>')"></td>
+                                <input type="button" id="save_button<%= student.no %>" value="Save" class="save" style="display:none;" onclick="save_row('<%= student.no %>')"></td>
+                        </tr>
+                        <% }); %>
+                </tbody>
+            </table>
+
+            <table style="margin-top: 40px;" align='center' cellspacing=1 cellpadding=1 id="mytable" border=1>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <!-- <th>Name</th> -->
+                        <th>No of Days Present</th>
+                        <th>Total no of classes</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    <% students.forEach(function(student){ %>
+                        <tr>
+                            <td><%= student.roll %></td>
+                            <!-- <td><%= student.name %></td> -->
+                            <td id="days_present_row<%= student.no %>"><%= student.dayspresent %></td>
+                            <td id="total_days_row<%= student.no %>"><%= student.totaldays %></td>
+                            <td><input type="button" id="edit_button2<%= student.no %>" value="Edit" class="edit" onclick="edit_present_row('<%= student.no %>')">
+                                <input type="button" id="save_button2<%= student.no %>" value="Save" class="save" style="display:none;" onclick="save_total_row('<%= student.no %>')"></td>
                         </tr>
                         <% }); %>
                 </tbody>

@@ -224,12 +224,26 @@ router.get("/student", function (req, res) {
     console.log(subjArray);
     res.render("../frontEnd/public/student_subject.ejs", {
       subjects: subjArray,
+      roll: result[0].roll,
       name: result[0].name,
     });
   });
 });
 
 router.get("/studMark", (req, res) => {
-
+  const ID = req.query.ID;
+  var sql1 = "SELECT roll,name FROM student WHERE sl=?";
+  connection.query(sql1, [ID], (err, result) => {
+    
+    var sql ="SELECT roll,midSem,endSem,quiz,TA FROM student_mark_details WHERE subject=? AND roll=?";
+  connection.query(sql, [req.query.subj,[result[0].roll]], (err, result) => {
+    if (err) throw err;
+    else {
+      res.render("../frontEnd/public/studMark.ejs", { 
+        students: result
+      });
+    }
+  });
+  });
 });
 module.exports = router;
