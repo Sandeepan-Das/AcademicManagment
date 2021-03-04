@@ -41,6 +41,13 @@ router.post("/register", verifyLogin, async (req, res) => {
                   if (err) throw err;
                 }
               );
+              connection.query(
+                "INSERT INTO student_attd_details (roll,subject) VALUES (?,?);",
+                [req.body.email.split("@")[0], element],
+                (err, result) => {
+                  if (err) throw err;
+                }
+              );
             });
           }
 

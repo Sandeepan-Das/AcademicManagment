@@ -117,3 +117,16 @@ function save_total_row(no) {
   document.getElementById("save_button2" + no).style.display = "none";
 }
 
+function post_data2(params) {
+  const data = fetchURL();
+  $.ajax({
+    url: `/submitAttendance?ID=${data.ID}&year=${data.year}&branch=${data.branch}&subj=${data.subj}&roll=${data.roll}`,
+    type: "post",
+    contentType: "application/json",
+    success: function (data) {
+      location.reload();
+    },
+    error: function (xhr, ajaxOptions, thrownError) {},
+    data: JSON.stringify(params),
+  });
+}

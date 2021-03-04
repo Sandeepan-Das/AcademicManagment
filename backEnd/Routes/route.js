@@ -172,23 +172,48 @@ router.get("/subject/new", function (req, res) {
 });
 
 router.get("/show", function (req, res) {
-  var sql = "SELECT roll,name FROM class_student WHERE subject=?";
+  var sql = "SELECT roll,name FROM fetchMark WHERE subject=? ORDER BY roll";
   connection.query(sql, [req.query.subj], (err, result) => {
     if (err) throw err;
     else {
-      console.log(result);
+      
       res.render("../frontEnd/public/show.ejs", { students: result });
     }
   });
 });
 
+// router.get("/marks", function (req, res) {
+//   var sql =
+//     "SELECT roll,midSem,endSem,quiz,TA FROM student_mark_details WHERE roll=? AND subject=?";
+//   var sql2 =
+//     "SELECT present,total FROM student_attd_details WHERE roll=? AND subject=?";
+//   connection.query(sql, [req.query.roll, req.query.subj], (err, result) => {
+//     if (err) throw err;
+//     else {
+//       connection.query(
+//         sql2,
+//         [req.query.roll, req.query.subj],
+//         (err, result2) => {
+//           if (err) throw err;
+//           else {
+//             console.log(result2)
+//             res.render("../frontEnd/public/marks.ejs", { students: result,attendance:result });
+//           }
+//         }
+//       );
+//     }
+//   });
+// });
 router.get("/marks", function (req, res) {
-  var sql =
-    "SELECT roll,midSem,endSem,quiz,TA FROM student_mark_details WHERE roll=? AND subject=?";
+  var sql = "SELECT * FROM combine WHERE roll=? AND subject=?";
+
   connection.query(sql, [req.query.roll, req.query.subj], (err, result) => {
     if (err) throw err;
     else {
-      res.render("../frontEnd/public/marks.ejs", { students: result });
+      
+      res.render("../frontEnd/public/marks.ejs", {
+        students: result,
+      });
     }
   });
 });
@@ -214,6 +239,20 @@ router.post("/submitMarks", (req, res) => {
     }
   );
 });
+router.post("/submitAttendance", (req, res) => {
+  var sql =
+    "UPDATE student_attd_details SET present=?,total=? WHERE roll=? AND subject=?";
+  connection.query(
+    sql,
+    [req.body.present, req.body.total, req.query.roll, req.query.subj],
+    (err, result) => {
+      if (err) throw err;
+      else {
+        res.send({});
+      }
+    }
+  );
+});
 
 router.get("/student", function (req, res) {
   const ID = req.query.ID;
@@ -221,7 +260,6 @@ router.get("/student", function (req, res) {
   connection.query(sql, [ID], (err, result) => {
     const data = fetchYear(result[0].roll);
     const subjArray = extract[data.yr];
-    console.log(subjArray);
     res.render("../frontEnd/public/student_subject.ejs", {
       subjects: subjArray,
       roll: result[0].roll,
@@ -234,16 +272,16 @@ router.get("/studMark", (req, res) => {
   const ID = req.query.ID;
   var sql1 = "SELECT roll,name FROM student WHERE sl=?";
   connection.query(sql1, [ID], (err, result) => {
-    
-    var sql ="SELECT roll,midSem,endSem,quiz,TA FROM student_mark_details WHERE subject=? AND roll=?";
-  connection.query(sql, [req.query.subj,[result[0].roll]], (err, result) => {
-    if (err) throw err;
-    else {
-      res.render("../frontEnd/public/studMark.ejs", { 
-        students: result
-      });
-    }
-  });
+    var sql =
+      "SELECT roll,midSem,endSem,quiz,TA FROM student_mark_details WHERE subject=? AND roll=?";
+    connection.query(sql, [req.query.subj, [result[0].roll]], (err, result) => {
+      if (err) throw err;
+      else {
+        res.render("../frontEnd/public/studMark.ejs", {
+          students: result,
+        });
+      }
+    });
   });
 });
 module.exports = router;
