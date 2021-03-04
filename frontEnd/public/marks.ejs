@@ -53,8 +53,8 @@
                         <tr>
                             <td><%= student.roll %></td>
                             <!-- <td><%= student.name %></td> -->
-                            <td id="days_present_row<%= student.no %>"><%= student.dayspresent %></td>
-                            <td id="total_days_row<%= student.no %>"><%= student.totaldays %></td>
+                            <td id="days_present_row<%= student.no %>"><%= student.present %></td>
+                            <td id="total_days_row<%= student.no %>"><%= student.total %></td>
                             <td><input type="button" id="edit_button2<%= student.no %>" value="Edit" class="edit" onclick="edit_present_row('<%= student.no %>')">
                                 <input type="button" id="save_button2<%= student.no %>" value="Save" class="save" style="display:none;" onclick="save_total_row('<%= student.no %>')"></td>
                         </tr>
