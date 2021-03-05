@@ -8,7 +8,7 @@ const fetchYear = require("../staticdB/subj");
 const extract = require("../staticdB/subj_details.json");
 
 const range = require("../External/perecentRange");
-const filter = require("../External/filter")
+const filter = require("../External/filter");
 var students = [
   {
     no: "1",
@@ -175,14 +175,13 @@ router.get("/subject/new", function (req, res) {
 
 router.get("/show", function (req, res) {
   var sql;
-  
+
   if (req.query.filter != undefined) sql = filter(req.query.filter);
   else sql = "SELECT roll,name FROM fetchMark WHERE subject=? ORDER BY roll";
-  
+
   connection.query(sql, [req.query.subj], (err, result) => {
     if (err) throw err;
     else {
-      
       res.render("../frontEnd/public/show.ejs", { students: result });
     }
   });
@@ -253,22 +252,61 @@ router.get("/student", function (req, res) {
 
 router.get("/studMark", (req, res) => {
   const ID = req.query.ID;
-  var sql1 = "SELECT roll,name FROM student WHERE sl=?";
+  var sql1 = "SELECT roll,year,branch,name FROM student WHERE sl=?";
   connection.query(sql1, [ID], (err, result) => {
     var sql =
       "SELECT *,(present/total)*100 AS percent FROM combine WHERE subject=? AND roll=?";
-    connection.query(sql, [req.query.subj, [result[0].roll]], (err, result) => {
-      if (err) throw err;
-      else {
-        const color = range(result[0].percent);
-        
-        res.render("../frontEnd/public/studMark.ejs", {
-          students: result,
-          attendance: color,
-        });
+    connection.query(
+      sql,
+      [req.query.subj, [result[0].roll]],
+      (err, result2) => {
+        if (err) throw err;
+        else {
+          const color = range(result2[0].percent);
+          var sql3 =
+            "SELECT message FROM message WHERE subject=? AND year=? AND branch=?";
+          connection.query(
+            sql3,
+            [req.query.subj, result[0].year, result[0].branch],
+            (err, result3) => {
+              if (err) console.log(err);
+              else {
+                console.log(result3);
+                if (result3.length == 0) {
+                  res.render("../frontEnd/public/studMark.ejs", {
+                    students: result2,
+                    attendance: color,
+                    msg:undefined
+                  });
+                } else {
+                  res.render("../frontEnd/public/studMark.ejs", {
+                    students: result2,
+                    attendance: color,
+                    msg: result3[0].message,
+                  });
+                }
+              }
+            }
+          );
+        }
       }
-    });
+    );
   });
+});
+
+router.post("/message", (req, res) => {
+  var sql =
+    "INSERT INTO message (year,branch,message,subject) VALUES (?,?,?,?)";
+  connection.query(
+    sql,
+    [req.body.year, req.body.branch, req.body.message, req.body.subject],
+    (err, result) => {
+      if (err) console.log(err);
+      else {
+        res.send({});
+      }
+    }
+  );
 });
 
 module.exports = router;
