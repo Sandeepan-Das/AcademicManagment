@@ -24,8 +24,16 @@
   <body>
     <div class="container">
       <div class="container">
+        <header class="jumbotron jumbo2" style="height:250px; margin-top:70px; padding-top:20px">
+          <div class="container">
+            <h2 style="margin-top:30px; color:black; margin-left:30px";><u>Notice</u></h2>
+            <textarea id="textarea" style="height: 100px; width:100%"></textarea>
+            <button class="btn btn-danger" onclick="Postfunc();location.href='/'">Post</button>
+            <button class="btn btn-primary" onclick="Editfunc();location.href='/'">Edit</button>
+          </div>
+        </header>
         
-          <h1 style="margin-top: 100px; margin-bottom: 4px; margin-left:70px; color:black;">Students</h2>
+        <h1 style="margin-top: 70px; margin-bottom: 4px; margin-left:70px; color:black;">Students</h2>
         
         <hr style="margin-top:10px; margin-bottom:10px; color:black;">
       </div>
@@ -62,6 +70,7 @@
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="../scripts/show.js"></script>
+   
    
   </body>
 </html>
