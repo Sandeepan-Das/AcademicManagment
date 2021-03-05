@@ -1,69 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Marks Page</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../stylesheets/marks.css"
-    />
-</head>
-<body id="body">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/marks.css" />
+  </head>
+  <body id="body">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
-        <div id="wrapper">
-            <table style="margin-top: 110px;" align='center' cellspacing=1 cellpadding=1 id="mytable" border=1>
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <!-- <th>Name</th> -->
-                        <th>Quiz</th>
-                        <th>TA</th>
-                        <th>Midsem</th>
-                        <th>Endsem</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody">
-                    <% students.forEach(function(student){ %>
-                        <tr>
-                            <td><%= student.roll %></td>
-                            <!-- <td><%= student.name %></td> -->
-                            <td id="quiz_row<%= student.no %>"><%= student.quiz %></td>
-                            <td id="ta_row<%= student.no %>"><%= student.TA %></td>
-                            <td id="midsem_row<%= student.no %>"><%= student.midSem %></td>
-                            <td id="endsem_row<%= student.no %>"><%= student.endSem %></td>
-                        </tr>
-                        <% }); %>
-                </tbody>
-            </table>
-            <table style="margin-top: 40px;" align='center' cellspacing=1 cellpadding=1 id="mytable" border=1>
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <!-- <th>Name</th> -->
-                        <th>Days Present</th>
-                        <th>Total no of classes</th>
-                        <th>Percentage</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody">
-                    <% students.forEach(function(student){ %>
-                        <tr class="attd<%= attendance %>">
-                            <td><%= student.roll %></td>
-                            <!-- <td><%= student.name %></td> -->
-                            <td id="days_present_row<%= student.no %>"><%= student.present %></td>
-                            <td id="total_days_row<%= student.no %>"><%= student.total %></td>
-                            <td id="pecentage<%= student.no %>"><%= student.percent %></td>
-                        </tr>
-                        <% }); %>
-                </tbody>
-            </table>
-        </div>
-        
-        <script src="../scripts/marks.js"></script>
-    
-</body>
+    <div id="wrapper">
+      <table
+        style="margin-top: 110px"
+        align="center"
+        cellspacing="1"
+        cellpadding="1"
+        id="mytable"
+        border="1"
+      >
+        <thead>
+          <tr>
+            <th>Id</th>
+            <!-- <th>Name</th> -->
+            <th>Quiz</th>
+            <th>TA</th>
+            <th>Midsem</th>
+            <th>Endsem</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
+          <% students.forEach(function(student){ %>
+          <tr>
+            <td><%= student.roll %></td>
+            <!-- <td><%= student.name %></td> -->
+            <td id="quiz_row<%= student.no %>"><%= student.quiz %></td>
+            <td id="ta_row<%= student.no %>"><%= student.TA %></td>
+            <td id="midsem_row<%= student.no %>"><%= student.midSem %></td>
+            <td id="endsem_row<%= student.no %>"><%= student.endSem %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+      <table
+        style="margin-top: 40px"
+        align="center"
+        cellspacing="1"
+        cellpadding="1"
+        id="mytable"
+        border="1"
+      >
+        <thead>
+          <tr>
+            <th>Id</th>
+            <!-- <th>Name</th> -->
+            <th>Days Present</th>
+            <th>Total no of classes</th>
+            <th>Percentage</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
+          <% students.forEach(function(student){ %>
+          <tr class="attd<%= attendance %>">
+            <td><%= student.roll %></td>
+            <!-- <td><%= student.name %></td> -->
+            <td id="days_present_row<%= student.no %>">
+              <%= student.present %>
+            </td>
+            <td id="total_days_row<%= student.no %>"><%= student.total %></td>
+            <td id="pecentage<%= student.no %>"><%= student.percent %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+   
+    <script src="../scripts/marks.js"></script>
+  </body>
 </html>
