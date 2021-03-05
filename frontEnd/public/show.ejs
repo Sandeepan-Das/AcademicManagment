@@ -27,9 +27,12 @@
         <header class="jumbotron jumbo2" style="height:250px; margin-top:70px; padding-top:20px">
           <div class="container">
             <h2 style="margin-top:30px; color:black; margin-left:30px";><u>Notice</u></h2>
-            <textarea id="textarea" style="height: 100px; width:100%"></textarea>
-            <button class="btn btn-danger" onclick="Postfunc();location.href='/'">Post</button>
-            <button class="btn btn-primary" onclick="Editfunc();location.href='/'">Edit</button>
+            <%if(msg!=undefined){%>
+              <textarea id="textarea" style="height: 100px; width:100%"><%=msg%></textarea>
+              <%}%>
+            
+            <button class="btn btn-danger" onclick="postMsg()">Post</button>
+            <button class="btn btn-primary" onclick="Editfunc()">Edit</button>
           </div>
         </header>
         
@@ -69,6 +72,7 @@
       </ul>
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="../scripts/show.js"></script>
    
    

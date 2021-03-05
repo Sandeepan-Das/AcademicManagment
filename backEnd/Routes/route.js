@@ -175,14 +175,30 @@ router.get("/subject/new", function (req, res) {
 
 router.get("/show", function (req, res) {
   var sql;
-
+  var msg;
   if (req.query.filter != undefined) sql = filter(req.query.filter);
   else sql = "SELECT roll,name FROM fetchMark WHERE subject=? ORDER BY roll";
-
+  var sql3 =
+    "SELECT message FROM message WHERE subject=? AND year=? AND branch=?";
+  connection.query(
+    sql3,
+    [req.query.subj, req.query.year, req.query.branch],
+    (err, result4) => {
+      if (err) console.log(err);
+      else {
+        console.log(result4);
+        if (result4.length == 0) {
+          msg = undefined;
+        } else {
+          msg = result4[0].message;
+        }
+      }
+    }
+  );
   connection.query(sql, [req.query.subj], (err, result) => {
     if (err) throw err;
     else {
-      res.render("../frontEnd/public/show.ejs", { students: result });
+      res.render("../frontEnd/public/show.ejs", { students: result, msg });
     }
   });
 });
@@ -310,6 +326,7 @@ router.post("/message", (req, res) => {
 });
 
 router.put("/modifyMessage", (req, res) => {
+  console.log(req.body.message)
   var sql =
     "UPDATE message SET message=? WHERE subject=? AND year=? AND branch=?";
   connection.query(
