@@ -7,6 +7,8 @@ const auth = require("../middlewares/auth");
 const fetchYear = require("../staticdB/subj");
 const extract = require("../staticdB/subj_details.json");
 
+const range = require("../External/perecentRange");
+const filter = require("../External/filter")
 var students = [
   {
     no: "1",
@@ -172,7 +174,11 @@ router.get("/subject/new", function (req, res) {
 });
 
 router.get("/show", function (req, res) {
-  var sql = "SELECT roll,name FROM fetchMark WHERE subject=? ORDER BY roll";
+  var sql;
+  
+  if (req.query.filter != undefined) sql = filter(req.query.filter);
+  else sql = "SELECT roll,name FROM fetchMark WHERE subject=? ORDER BY roll";
+  
   connection.query(sql, [req.query.subj], (err, result) => {
     if (err) throw err;
     else {
@@ -182,35 +188,12 @@ router.get("/show", function (req, res) {
   });
 });
 
-// router.get("/marks", function (req, res) {
-//   var sql =
-//     "SELECT roll,midSem,endSem,quiz,TA FROM student_mark_details WHERE roll=? AND subject=?";
-//   var sql2 =
-//     "SELECT present,total FROM student_attd_details WHERE roll=? AND subject=?";
-//   connection.query(sql, [req.query.roll, req.query.subj], (err, result) => {
-//     if (err) throw err;
-//     else {
-//       connection.query(
-//         sql2,
-//         [req.query.roll, req.query.subj],
-//         (err, result2) => {
-//           if (err) throw err;
-//           else {
-//             console.log(result2)
-//             res.render("../frontEnd/public/marks.ejs", { students: result,attendance:result });
-//           }
-//         }
-//       );
-//     }
-//   });
-// });
 router.get("/marks", function (req, res) {
   var sql = "SELECT * FROM combine WHERE roll=? AND subject=?";
 
   connection.query(sql, [req.query.roll, req.query.subj], (err, result) => {
     if (err) throw err;
     else {
-      
       res.render("../frontEnd/public/marks.ejs", {
         students: result,
       });
@@ -273,15 +256,19 @@ router.get("/studMark", (req, res) => {
   var sql1 = "SELECT roll,name FROM student WHERE sl=?";
   connection.query(sql1, [ID], (err, result) => {
     var sql =
-      "SELECT roll,midSem,endSem,quiz,TA FROM student_mark_details WHERE subject=? AND roll=?";
+      "SELECT *,(present/total)*100 AS percent FROM combine WHERE subject=? AND roll=?";
     connection.query(sql, [req.query.subj, [result[0].roll]], (err, result) => {
       if (err) throw err;
       else {
+        const color = range(result[0].percent);
+        
         res.render("../frontEnd/public/studMark.ejs", {
           students: result,
+          attendance: color,
         });
       }
     });
   });
 });
+
 module.exports = router;

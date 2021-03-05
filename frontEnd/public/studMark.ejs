@@ -51,12 +51,12 @@
                 </thead>
                 <tbody id="tbody">
                     <% students.forEach(function(student){ %>
-                        <tr class="attd<%= attd_no %>">
+                        <tr class="attd<%= attendance %>">
                             <td><%= student.roll %></td>
                             <!-- <td><%= student.name %></td> -->
                             <td id="days_present_row<%= student.no %>"><%= student.present %></td>
                             <td id="total_days_row<%= student.no %>"><%= student.total %></td>
-                            <td id="pecentage<%= student.no %>"><%= student.percentage %></td>
+                            <td id="pecentage<%= student.no %>"><%= student.percent %></td>
                         </tr>
                         <% }); %>
                 </tbody>
