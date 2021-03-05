@@ -24,12 +24,24 @@
   <body>
     <div class="container">
       <div class="container">
-        <h1 style="margin-top: 100px; margin-bottom: 4px; margin-left:70px; color:black;">Students</h2>
+        
+          <h1 style="margin-top: 100px; margin-bottom: 4px; margin-left:70px; color:black;">Students</h2>
+        
         <hr style="margin-top:10px; margin-bottom:10px; color:black;">
       </div>
       <ul class="responsive-table">
         <header class="jumbotron">      
           <div class="container">
+            <p align="right">
+              <form name="jump" class="center">
+              <select style="margin-left: 74%; margin-bottom:18px; padding:5px 5px;" name="menu" onchange="gotoPage(this)">
+              <option value="#">Roll</option>
+              <option value="/Descending" >Descending</option>
+              <option value="/Ascending">Ascending</option>
+              <option value="/Below">below 35</option>
+              </select>
+              </form>
+            </p>
             <li class="table-header">
               <div class="col col-1">Id</div>
               <div class="col col-2">Name</div>
@@ -48,5 +60,10 @@
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="../scripts/show.js"></script>
+    <script type="text/javascript">
+      function gotoPage(select){
+          window.location = select.value;
+      }
+      </script>
   </body>
 </html>
