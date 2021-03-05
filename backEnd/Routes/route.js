@@ -276,7 +276,7 @@ router.get("/studMark", (req, res) => {
                   res.render("../frontEnd/public/studMark.ejs", {
                     students: result2,
                     attendance: color,
-                    msg:undefined
+                    msg: undefined,
                   });
                 } else {
                   res.render("../frontEnd/public/studMark.ejs", {
@@ -299,7 +299,22 @@ router.post("/message", (req, res) => {
     "INSERT INTO message (year,branch,message,subject) VALUES (?,?,?,?)";
   connection.query(
     sql,
-    [req.body.year, req.body.branch, req.body.message, req.body.subject],
+    [req.query.year, req.query.branch, req.body.message, req.query.subj],
+    (err, result) => {
+      if (err) console.log(err);
+      else {
+        res.send({});
+      }
+    }
+  );
+});
+
+router.put("/modifyMessage", (req, res) => {
+  var sql =
+    "UPDATE message SET message=? WHERE subject=? AND year=? AND branch=?";
+  connection.query(
+    sql,
+    [req.body.message, req.query.subj, req.query.year, req.query.branch],
     (err, result) => {
       if (err) console.log(err);
       else {
