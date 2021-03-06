@@ -109,7 +109,7 @@ footer {
   position: relative;
   top: 959px;
   bottom: 0;
-  background-color: black;
+  background-color: #212529;
   height: 50px;
   width: 100%;
 }
@@ -118,9 +118,6 @@ footer p {
   color: #ddd;
 }
 
-.navbar-nav{
-  
-}
 
 .navbar-nav a{
   text-decoration: none;

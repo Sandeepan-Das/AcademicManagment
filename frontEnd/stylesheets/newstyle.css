@@ -1,0 +1,27 @@
+.container{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 150px;
+}
+
+.form-group{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+footer {
+  display: flex;
+  margin: 0 auto;
+  position: absolute;
+  /* top: 466px; */
+  bottom: 0;
+  background-color: #212529;
+  height: 50px;
+  width: 100%;
+}
+
+footer p {
+  color: #ddd;
+}
