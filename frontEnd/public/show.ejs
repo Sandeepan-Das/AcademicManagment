@@ -24,12 +24,39 @@
   <body>
     <div class="container">
       <div class="container">
-        <h1 style="margin-top: 100px; margin-bottom: 4px; margin-left:70px; color:black;">Students</h2>
+        <header class="jumbotron jumbo2" style="height:250px; margin-top:70px; padding-top:20px">
+          <div class="container">
+            <h2 style="margin-top:30px; color:black; margin-left:30px";><u>Notice</u></h2>
+            <%if(msg!=undefined){%>
+              <textarea id="textarea" style="height: 100px; width:100%"><%=msg%></textarea>
+              <% } else { %>
+                <textarea id="textarea" style="height: 100px; width:100%"></textarea>
+              <%}%>
+            
+            <button class="btn btn-danger" onclick="postMsg()">Post</button>
+            <button class="btn btn-primary" onclick="Editfunc()">Edit</button>
+          </div>
+        </header>
+        
+        <h1 style="margin-top: 70px; margin-bottom: 4px; margin-left:70px; color:black;">Students</h2>
+        
         <hr style="margin-top:10px; margin-bottom:10px; color:black;">
       </div>
       <ul class="responsive-table">
         <header class="jumbotron">      
           <div class="container">
+            <p align="right">
+              <form name="jump" class="center">
+              <select style="margin-left: 74%; margin-bottom:18px; padding:5px 5px;" name="menu" onchange="filterData(this.value)">
+              <option selected>Filter By-</option>
+              <option value="roll">Roll</option>
+              <option value="Descending" >Descending</option>
+              <option value="Ascending">Ascending</option>
+              <option value="Back">below 35</option>
+              <option value="Pass">Above 35</option>
+              </select>
+              </form>
+            </p>
             <li class="table-header">
               <div class="col col-1">Id</div>
               <div class="col col-2">Name</div>
@@ -47,6 +74,9 @@
       </ul>
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="../scripts/show.js"></script>
+   
+   
   </body>
 </html>

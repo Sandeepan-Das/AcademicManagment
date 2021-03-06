@@ -8,6 +8,8 @@ const auth = require("../middlewares/auth");
 const fetchYear = require("../staticdB/subj");
 const extract = require("../staticdB/subj_details.json");
 
+const range = require("../External/perecentRange");
+const filter = require("../External/filter");
 var students = [
   {
     no: "1",
@@ -178,45 +180,41 @@ router.get("/subject/new", function (req, res) {
 });
 
 router.get("/show", function (req, res) {
-  var sql = "SELECT roll,name FROM fetchMark WHERE subject=? ORDER BY roll";
+  var sql;
+  var msg;
+  if (req.query.filter != undefined) sql = filter(req.query.filter);
+  else sql = "SELECT roll,name FROM fetchMark WHERE subject=? ORDER BY roll";
+  var sql3 =
+    "SELECT message FROM message WHERE subject=? AND year=? AND branch=?";
+  connection.query(
+    sql3,
+    [req.query.subj, req.query.year, req.query.branch],
+    (err, result4) => {
+      if (err) console.log(err);
+      else {
+        console.log(result4);
+        if (result4.length == 0) {
+          msg = undefined;
+        } else {
+          msg = result4[0].message;
+        }
+      }
+    }
+  );
   connection.query(sql, [req.query.subj], (err, result) => {
     if (err) throw err;
     else {
-      
-      res.render("../frontEnd/public/show.ejs", { students: result });
+      res.render("../frontEnd/public/show.ejs", { students: result, msg });
     }
   });
 });
 
-// router.get("/marks", function (req, res) {
-//   var sql =
-//     "SELECT roll,midSem,endSem,quiz,TA FROM student_mark_details WHERE roll=? AND subject=?";
-//   var sql2 =
-//     "SELECT present,total FROM student_attd_details WHERE roll=? AND subject=?";
-//   connection.query(sql, [req.query.roll, req.query.subj], (err, result) => {
-//     if (err) throw err;
-//     else {
-//       connection.query(
-//         sql2,
-//         [req.query.roll, req.query.subj],
-//         (err, result2) => {
-//           if (err) throw err;
-//           else {
-//             console.log(result2)
-//             res.render("../frontEnd/public/marks.ejs", { students: result,attendance:result });
-//           }
-//         }
-//       );
-//     }
-//   });
-// });
 router.get("/marks", function (req, res) {
   var sql = "SELECT * FROM combine WHERE roll=? AND subject=?";
 
   connection.query(sql, [req.query.roll, req.query.subj], (err, result) => {
     if (err) throw err;
     else {
-      
       res.render("../frontEnd/public/marks.ejs", {
         students: result,
       });
@@ -276,18 +274,77 @@ router.get("/student", function (req, res) {
 
 router.get("/studMark", (req, res) => {
   const ID = req.query.ID;
-  var sql1 = "SELECT roll,name FROM student WHERE sl=?";
+  var sql1 = "SELECT roll,year,branch,name FROM student WHERE sl=?";
   connection.query(sql1, [ID], (err, result) => {
     var sql =
-      "SELECT roll,midSem,endSem,quiz,TA FROM student_mark_details WHERE subject=? AND roll=?";
-    connection.query(sql, [req.query.subj, [result[0].roll]], (err, result) => {
-      if (err) throw err;
-      else {
-        res.render("../frontEnd/public/studMark.ejs", {
-          students: result,
-        });
+      "SELECT *,(present/total)*100 AS percent FROM combine WHERE subject=? AND roll=?";
+    connection.query(
+      sql,
+      [req.query.subj, [result[0].roll]],
+      (err, result2) => {
+        if (err) throw err;
+        else {
+          const color = range(result2[0].percent);
+          var sql3 =
+            "SELECT message FROM message WHERE subject=? AND year=? AND branch=?";
+          connection.query(
+            sql3,
+            [req.query.subj, result[0].year, result[0].branch],
+            (err, result3) => {
+              if (err) console.log(err);
+              else {
+                console.log(result3);
+                if (result3.length == 0) {
+                  res.render("../frontEnd/public/studMark.ejs", {
+                    students: result2,
+                    attendance: color,
+                    msg: undefined,
+                  });
+                } else {
+                  res.render("../frontEnd/public/studMark.ejs", {
+                    students: result2,
+                    attendance: color,
+                    msg: result3[0].message,
+                  });
+                }
+              }
+            }
+          );
+        }
       }
-    });
+    );
   });
 });
+
+router.post("/message", (req, res) => {
+  var sql =
+    "INSERT INTO message (year,branch,message,subject) VALUES (?,?,?,?)";
+  connection.query(
+    sql,
+    [req.query.year, req.query.branch, req.body.message, req.query.subj],
+    (err, result) => {
+      if (err) console.log(err);
+      else {
+        res.send({});
+      }
+    }
+  );
+});
+
+router.put("/modifyMessage", (req, res) => {
+  console.log(req.body.message)
+  var sql =
+    "UPDATE message SET message=? WHERE subject=? AND year=? AND branch=?";
+  connection.query(
+    sql,
+    [req.body.message, req.query.subj, req.query.year, req.query.branch],
+    (err, result) => {
+      if (err) console.log(err);
+      else {
+        res.send({});
+      }
+    }
+  );
+});
+
 module.exports = router;
