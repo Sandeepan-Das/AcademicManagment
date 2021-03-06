@@ -68,7 +68,11 @@
               <%= student.present %>
             </td>
             <td id="total_days_row<%= student.no %>"><%= student.total %></td>
+            <%if(student.percent){%>
             <td id="pecentage<%= student.no %>"><%= student.percent %></td>
+            <% } else { %>
+              <td id="pecentage<%= student.no %>">0</td>
+            <% } %>
           </tr>
           <% }); %>
         </tbody>
