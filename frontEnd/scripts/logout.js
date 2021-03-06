@@ -7,17 +7,10 @@ const logout = document.getElementById("log-out");
 logout.addEventListener("click", function () {
   console.log("clicked");
   window.localStorage.removeItem("token");
-  // if (window.localStorage.getItem('token') == null) {
-  //     console.log("absent");
-  // }
-  // else {
-  //     console.log("present");
-  // }
-  // location.href = `/`;
 });
 
 if (window.localStorage.getItem("token") != null) {
-  console.log("present");
+  // console.log("present");
   loggedin.style.display = "none";
   signup.style.display = "none";
   loggedout.style.display = "block";
@@ -25,5 +18,5 @@ if (window.localStorage.getItem("token") != null) {
   loggedin.style.display = "block";
   signup.style.display = "block";
   loggedout.style.display = "none";
-  console.log("absent");
+  // console.log("absent");
 }

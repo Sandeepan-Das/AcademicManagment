@@ -12,22 +12,30 @@ function checkInputs() {
   // trim to remove the whitespaces
   const emailValue = email.value.trim();
   const passwordValue = password.value.trim();
+  var e = 0;
+  var p = 0;
 
   if (emailValue === "") {
     setErrorFor(email, "Email ID cannot be blank");
   } else if (!isEmail(emailValue)) {
+    // console.log(emailValue);
     setErrorFor(email, "Must be in 'abc@iiit-bh.ac.in' format");
   }
-  // else {
-  //   setSuccessFor(email);
-  // }
-
+  else {
+    // setSuccessFor(email);
+    e = 1;
+  }  
+    
   if (passwordValue === "") {
-    // console.log(passwordValue);
     setErrorFor(password, "Input Password");
   } else if (emailValue === "") {
     setErrorFor(password, "first input email");
   } else {
+    // setSuccessFor(password);
+    p = 1; 
+  }
+
+  if (e === 1 && p === 1) {
     sendData();
   }
 }
@@ -46,8 +54,16 @@ function setSuccessFor(input) {
 
 function isEmail(email) {
   var pos = email.indexOf("@");
+  // console.log(pos);
   var str = email.substring(pos);
-  if (str !== "@iiit-bh.ac.in") {
+  // console.log(str);
+  if (str === "@iiit-bh.ac.in") {
+    // console.log("true");
+    // setSuccessFor(email);
+    return true;
+  }
+  else {
+    // console.log("false");
     return false;
   }
 }

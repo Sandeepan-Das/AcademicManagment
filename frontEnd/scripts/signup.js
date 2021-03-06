@@ -15,15 +15,17 @@ form.addEventListener("submit", (e) => {
 function checkInputs() {
   // trim to remove the whitespaces
   const fnameValue = fname.value;
-
   const emailValue = email.value.trim();
   const passwordValue = password.value.trim();
   const password2Value = password2.value.trim();
 
+  var f = e = p = p2 = 0;
+
   if (fnameValue === "") {
     setErrorFor(fname, "First name cannot be blank");
   } else {
-    setSuccessFor(fname);
+    // setSuccessFor(fname);
+    f = 1;
   }
 
   if (emailValue === "") {
@@ -31,7 +33,8 @@ function checkInputs() {
   } else if (!isEmail(emailValue)) {
     setErrorFor(email, 'Must be in "abc@iiit-bh.ac.in" format');
   } else {
-    setSuccessFor(email);
+    // setSuccessFor(email);
+    e = 1;
   }
 
   if (passwordValue === "") {
@@ -39,7 +42,8 @@ function checkInputs() {
   } else if (passwordValue.length < 6) {
     setErrorFor(password, "Min 6 characters needed");
   } else {
-    setSuccessFor(password);
+    // setSuccessFor(password);
+    p = 1;
   }
 
   if (password2Value === "") {
@@ -47,9 +51,12 @@ function checkInputs() {
   } else if (passwordValue !== password2Value) {
     setErrorFor(password2, "Passwords does not match");
   } else {
-    setSuccessFor(password2);
+    // setSuccessFor(password2);
+    p2 = 1;
   }
-  sendData();
+  if (f === 1 && e === 1 && p === 1 && p2 === 1) {
+    sendData();    
+  }
 }
 
 function setErrorFor(input, message) {
@@ -96,7 +103,11 @@ function sendData() {
     contentType: "application/json",
     success: function (data) {
       window.localStorage.setItem("token",data.token) ;
-      location.href="/"
+      location.href = "/"
+      setSuccessFor(fname);
+      setSuccessFor(email);
+      setSuccessFor(password);
+      setSuccessFor(password2);
     },
     error: function (xhr, ajaxOptions, thrownError) {},
     data: JSON.stringify(person),
