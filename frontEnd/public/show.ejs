@@ -29,6 +29,8 @@
             <h2 style="margin-top:30px; color:black; margin-left:30px";><u>Notice</u></h2>
             <%if(msg!=undefined){%>
               <textarea id="textarea" style="height: 100px; width:100%"><%=msg%></textarea>
+              <% } else { %>
+                <textarea id="textarea" style="height: 100px; width:100%"></textarea>
               <%}%>
             
             <button class="btn btn-danger" onclick="postMsg()">Post</button>
