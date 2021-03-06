@@ -2,6 +2,7 @@ const express = require("express"),
   cors = require("cors"),
   body_parser = require("body-parser");
   mysql = require("mysql")
+  
 
 
 const app = express();
@@ -19,6 +20,9 @@ app.use(express.json());
 app.use(route);
 app.use("/users", userRoute);
 
+
+
+
 //Serving static files
 app.use(express.static("frontEnd"));
 
@@ -34,3 +38,4 @@ app.listen(port, () => {
 //CONNECTING DB
 
 const db = require('./dataBase/mysql');
+const passport = require("passport");

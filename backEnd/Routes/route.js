@@ -1,3 +1,4 @@
+const { response } = require("express");
 const express = require("express");
 const router = express.Router();
 
@@ -83,6 +84,11 @@ router.get("/signUp", (req, res) => {
 
 router.get("/login", (req, res) => {
   res.render("../frontEnd/public/login.ejs"); //exist
+});
+
+router.get("/logout", (req, res) => {
+  // res.send("hahhaha");
+  res.render("../frontEnd/public/home.ejs");
 });
 
 router.post("/teacherDetails", auth, (req, res) => {

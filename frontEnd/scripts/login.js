@@ -18,6 +18,9 @@ function checkInputs() {
   } else if (!isEmail(emailValue)) {
     setErrorFor(email, "Must be in 'abc@iiit-bh.ac.in' format");
   }
+  // else {
+  //   setSuccessFor(email);
+  // }
 
   if (passwordValue === "") {
     // console.log(passwordValue);
