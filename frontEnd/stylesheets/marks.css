@@ -66,3 +66,17 @@ input[type=button]:hover {
   
   
 }
+
+footer {
+  display: flex;
+  position: absolute;
+  top: 964px;
+  bottom: 0;
+  background-color: #212529;
+  height: 50px;
+  width: 100%;
+}
+
+footer p {
+  color: #ddd;
+}

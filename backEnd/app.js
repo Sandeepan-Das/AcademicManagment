@@ -38,4 +38,3 @@ app.listen(port, () => {
 //CONNECTING DB
 
 const db = require('./dataBase/mysql');
-const passport = require("passport");

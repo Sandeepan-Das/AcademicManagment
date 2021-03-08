@@ -19,7 +19,7 @@ body {
 }
 
 .banner-sec {
-  background: url(https://static.pexels.com/photos/33972/pexels-photo.jpg)
+  background: url(../assets/login.jpg)
     no-repeat left bottom;
   background-size: cover;
   min-height: 0px;

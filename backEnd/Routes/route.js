@@ -80,6 +80,10 @@ router.get("/", (req, res) => {
   res.render("../frontEnd/public/home.ejs"); //kichi nuha
 });
 
+router.get("/contact", (req, res) => {
+  res.render("../frontEnd/public/contact.ejs"); //kichi nuha
+});
+
 router.get("/signUp", (req, res) => {
   res.render("../frontEnd/public/signup.ejs"); //pasa ethi
 });
