@@ -1,3 +1,4 @@
+const { response } = require("express");
 const express = require("express");
 const router = express.Router();
 
@@ -79,12 +80,21 @@ router.get("/", (req, res) => {
   res.render("../frontEnd/public/home.ejs"); //kichi nuha
 });
 
+router.get("/contact", (req, res) => {
+  res.render("../frontEnd/public/contact.ejs"); //kichi nuha
+});
+
 router.get("/signUp", (req, res) => {
   res.render("../frontEnd/public/signup.ejs"); //pasa ethi
 });
 
 router.get("/login", (req, res) => {
   res.render("../frontEnd/public/login.ejs"); //exist
+});
+
+router.get("/logout", (req, res) => {
+  // res.send("hahhaha");
+  res.render("../frontEnd/public/home.ejs");
 });
 
 router.post("/teacherDetails", auth, (req, res) => {

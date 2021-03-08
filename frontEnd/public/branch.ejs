@@ -5,16 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Academics</title>
+        <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+
     <link
       rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      type="text/css"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
     />
+    <!-- <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    /> -->
+    <link rel="stylesheet" href="../stylesheets/branch.css" />
     <link rel="stylesheet" href="../stylesheets/year.css" />
+
   </head>
   <body>
     <%- include ("../partials/header") %>
     <div class="tabs">
-      <div class="tab-header">
+      <div class="tab-header bbb" id="abcd">
         <div class="active">
           <button
             class="branch"
@@ -36,7 +50,7 @@
         </div>
         <% }); %>
       </div>
-      <div class="tab-indicator"></div>
+      <div class="tab-indicator" id="abc"></div>
       <div class="tab-content">
         <div class="active">
           <i class="Branch"></i>
@@ -46,7 +60,7 @@
                 <u><h1>Welcome Teachers!!</h1></u>
                 <p>
                   On the left side of the page you can view the respective
-                  branches your teaching.And by using the below<br />
+                  branches your teaching.And by using the below
                   button you can create your new classroom for a particular year
                   and branch.
                 </p>
@@ -61,7 +75,7 @@
         </div>
       </div>
     </div>
-
+    <footer><p>copyright..</p></footer>
     <script src="../scripts/year.js"></script>
     <script src="../scripts/verify.js"></script>
     <script src="../scripts/branch.js"></script>

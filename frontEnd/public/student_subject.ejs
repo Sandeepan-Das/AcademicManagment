@@ -11,10 +11,15 @@
       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
       crossorigin="anonymous"
     />
-    <link
+        <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+    <!-- <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
-    />
+    /> -->
     <link
       rel="stylesheet"
       type="text/css"
@@ -22,9 +27,10 @@
     />
   </head>
   <body style="background-color: #dce1e3">
-    <div class="container">
-      <header class="jumbotron">
-        <div class="container">
+  <%- include('../partials/header') %>
+    <div class="container" style="padding-top: 180px;">
+      <header class="jumbotron" id="abcd">
+        <div class="container" id="dcef">
           <h1>Welcome <%=name%>!!!</h1>
           <p>You can view all the subjects that you are studying</p>
           <!-- <p>
@@ -52,7 +58,7 @@
         <% }); %>
       </div>
     </div>
+    <footer><p>copyright..</p></footer>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="../scripts/studSubj.js"></script>
-  </body>
-</html>
+  <%- include ('../partials/footer') %>

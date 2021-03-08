@@ -1,3 +1,6 @@
+
+
+
 if (window.localStorage.getItem("token") != null) {
   $.ajax({
     url: "/verify",
@@ -11,3 +14,5 @@ if (window.localStorage.getItem("token") != null) {
     },
   });
 }
+
+

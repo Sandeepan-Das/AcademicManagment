@@ -2,6 +2,7 @@ const express = require("express"),
   cors = require("cors"),
   body_parser = require("body-parser");
   mysql = require("mysql")
+  
 
 
 const app = express();
@@ -18,6 +19,9 @@ app.use(body_parser.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(route);
 app.use("/users", userRoute);
+
+
+
 
 //Serving static files
 app.use(express.static("frontEnd"));
