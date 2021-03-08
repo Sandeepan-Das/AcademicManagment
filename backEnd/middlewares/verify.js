@@ -6,7 +6,7 @@ async function verifyLogin(req, res, next) {
   const roll = email.split("@")[0];
   // console.log()
 
-  if (Number(roll[1]) <= 5 && Number(roll[1]) > 0) req.isStudent = true;
+  if (Number(roll[1]) <= 5 && Number(roll[1]) > 0 && roll[0]=='b') req.isStudent = true;
   else req.isStudent = false;
 
   req.primaryKey = req.body.email;

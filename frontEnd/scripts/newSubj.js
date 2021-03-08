@@ -1,10 +1,10 @@
 function detailsfunc() {
   var person = {
-    year: $("#year").val(),
+    year: $("#year").val().toLowerCase(),
 
-    branch: $("#branch").val(),
+    branch: $("#branch").val().toUpperCase(),
 
-    subj: $("#subject").val(),
+    subj: $("#subject").val().toUpperCase(),
   };
 
   $.ajax({
