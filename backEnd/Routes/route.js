@@ -187,7 +187,7 @@ router.get("/show", function (req, res) {
   var sql;
   var msg;
   if (req.query.filter != undefined) sql = filter(req.query.filter,req.query.subj,req.query.year,req.query.branch);
-  else sql = "SELECT roll,name FROM fetchMark WHERE subject=? ORDER BY roll";
+  else sql = "SELECT roll,name FROM fetchMark WHERE subject=? AND year=? AND branch=? ORDER BY roll";
   var sql3 =
     "SELECT message FROM message WHERE subject=? AND year=? AND branch=?";
   connection.query(
@@ -205,7 +205,7 @@ router.get("/show", function (req, res) {
       }
     }
   );
-  connection.query(sql, [req.query.subj], (err, result) => {
+  connection.query(sql, [req.query.subj,req.query.year, req.query.branch], (err, result) => {
     if (err) throw err;
     else {
       res.render("../frontEnd/public/show.ejs", { students: result, msg });
