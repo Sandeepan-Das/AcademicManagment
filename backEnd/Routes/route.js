@@ -186,7 +186,7 @@ router.get("/subject/new", function (req, res) {
 router.get("/show", function (req, res) {
   var sql;
   var msg;
-  if (req.query.filter != undefined) sql = filter(req.query.filter);
+  if (req.query.filter != undefined) sql = filter(req.query.filter,req.query.subj,req.query.year,req.query.branch);
   else sql = "SELECT roll,name FROM fetchMark WHERE subject=? ORDER BY roll";
   var sql3 =
     "SELECT message FROM message WHERE subject=? AND year=? AND branch=?";
