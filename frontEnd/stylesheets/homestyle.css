@@ -10,6 +10,7 @@ body {
   width: 100%;
 }
 
+
 .wrapper {
   width: 100%;
   margin: 0 auto;
@@ -33,7 +34,7 @@ body {
   align-content: center;
   position: relative;
   background: #ddd;
-  height: 1000px;
+  height: 800px;
 }
 
 .content-area h2 {

@@ -6,8 +6,53 @@ body {
   background: rgb(210, 216, 195);
 }
 
+.col-md-6 .col-sm-12 .col-xl-4{
+  float: left;
+}
 
-#abcd{
+@media (min-width: 992px) and (max-width: 1400px){
+  .col-lg-4{
+    width: 33.3%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px){
+  .col-md-6{
+    width: 50%;
+  }
+
+}
+
+
+@media (min-width: 1400px){
+  .col-xl-4{
+    width: 25%;
+  }
+}
+
+#hello{
+  padding-top: 60px;
+  padding-bottom: 60px;
+  border-radius: 6px;
+  margin-bottom: 25px;
+}
+
+.abcdef{
+  padding-top: 100px;
+}
+
+.thumbnail{
+  display: block;
+  padding: 4px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border .2s ease-in-out;
+} 
+
+ #abcd{
   border-radius: 6px;
   padding-right: 60px;
   padding-left: 60px;

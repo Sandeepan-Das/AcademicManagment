@@ -27,8 +27,9 @@
     />
   </head>
   <body style="background-color: #DCE1E3;">
-    <div class="container">
-      <header class="jumbotron">
+    <%- include('../partials/header') %>
+    <div class="container abcdef">
+      <header class="jumbotron" id="hello">
         <div class="container">
           <h1>Welcome to Subjects Page</h1>
           <p>
@@ -45,7 +46,7 @@
 
       <div class="row text-center" style="display: flex; flex-wrap: wrap">
         <% subjects.forEach(function(subject){ %>
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-6 col-sm-12 col-lg-4 col-xl-3">
           <a onclick="fetchShow('<%= subject.subj %>')">
             <div class="thumbnail">
               <img
@@ -62,5 +63,6 @@
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="../scripts/subj.js"></script>
-  </body>
-</html>
+    <footer style="top: 500px;"><p>copyright..</p></footer>
+
+    <%- include ('../partials/footer') %>
