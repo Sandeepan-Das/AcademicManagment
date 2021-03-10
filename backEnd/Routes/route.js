@@ -98,6 +98,7 @@ router.get("/logout", (req, res) => {
 });
 
 router.post("/teacherDetails", auth, (req, res) => {
+  
   var sql =
     "INSERT INTO teacher_details (email,year,branch,subj) VALUES (?,?,?,?)";
   try {
@@ -186,8 +187,16 @@ router.get("/subject/new", function (req, res) {
 router.get("/show", function (req, res) {
   var sql;
   var msg;
-  if (req.query.filter != undefined) sql = filter(req.query.filter,req.query.subj,req.query.year,req.query.branch);
-  else sql = "SELECT roll,name FROM fetchMark WHERE subject=? AND year=? AND branch=? ORDER BY roll";
+  if (req.query.filter != undefined)
+    sql = filter(
+      req.query.filter,
+      req.query.subj,
+      req.query.year,
+      req.query.branch
+    );
+  else
+    sql =
+      "SELECT roll,name FROM fetchMark WHERE subject=? AND year=? AND branch=? ORDER BY roll";
   var sql3 =
     "SELECT message FROM message WHERE subject=? AND year=? AND branch=?";
   connection.query(
@@ -196,7 +205,7 @@ router.get("/show", function (req, res) {
     (err, result4) => {
       if (err) console.log(err);
       else {
-        console.log(result4);
+        
         if (result4.length == 0) {
           msg = undefined;
         } else {
@@ -205,12 +214,16 @@ router.get("/show", function (req, res) {
       }
     }
   );
-  connection.query(sql, [req.query.subj,req.query.year, req.query.branch], (err, result) => {
-    if (err) throw err;
-    else {
-      res.render("../frontEnd/public/show.ejs", { students: result, msg });
+  connection.query(
+    sql,
+    [req.query.subj, req.query.year, req.query.branch],
+    (err, result) => {
+      if (err) throw err;
+      else {
+        res.render("../frontEnd/public/show.ejs", { students: result, msg });
+      }
     }
-  });
+  );
 });
 
 router.get("/marks", function (req, res) {
@@ -297,7 +310,7 @@ router.get("/studMark", (req, res) => {
             (err, result3) => {
               if (err) console.log(err);
               else {
-                console.log(result3);
+                
                 if (result3.length == 0) {
                   res.render("../frontEnd/public/studMark.ejs", {
                     students: result2,
@@ -336,7 +349,7 @@ router.post("/message", (req, res) => {
 });
 
 router.put("/modifyMessage", (req, res) => {
-  console.log(req.body.message)
+  
   var sql =
     "UPDATE message SET message=? WHERE subject=? AND year=? AND branch=?";
   connection.query(
@@ -349,6 +362,27 @@ router.put("/modifyMessage", (req, res) => {
       }
     }
   );
+});
+
+router.delete("/delClass", (req, res) => {
+  const year = req.query.year;
+  var sql = "DELETE FROM teacher_details WHERE email=? AND year=? AND subj=?";
+  connection.query("CALL fetch_email(?)", [req.query.ID], (err, result) => {
+    if (err) throw err;
+    else {
+      connection.query(
+        sql,
+        [result[0][0].email, year, req.query.subj],
+        (err, result) => {
+          if (err) throw err;
+          else {
+            
+            res.render("../frontEnd/public/home.ejs");
+          }
+        }
+      );
+    }
+  });
 });
 
 module.exports = router;
