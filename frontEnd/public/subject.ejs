@@ -25,13 +25,13 @@
       type="text/css"
       href="../../stylesheets/subject.css"
     />
-    <style> 
-      .fa:hover { 
-        color: red;  
-      } 
-  </style> 
+    <style>
+      .fa:hover {
+        color: red;
+      }
+    </style>
   </head>
-  <body style="background-color: #DCE1E3;">
+  <body style="background-color: #dce1e3">
     <%- include('../partials/header') %>
     <div class="container abcdef">
       <header class="jumbotron" id="hello">
@@ -53,12 +53,36 @@
         <% subjects.forEach(function(subject){ %>
         <div class="col-md-6 col-sm-12 col-lg-4 col-xl-3">
           <a onclick="fetchShow('<%= subject.subj %>')">
-            <figure class="figure" style="border:8px solid; border-color:white">
-              <img class="figure-image img-fluid"
+            <figure
+              class="figure"
+              style="border: 8px solid; border-color: white"
+            >
+              <img
+                class="figure-image img-fluid"
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwwXQu1hZwcBerHRcOGAAGgk0UBmbvMl9fOQ&usqp=CAU"
               />
-              <figcaption class="figure-caption" style="background-color: white; padding-top:3px; padding-bottom:1px">
-                <h4 style="padding-left: 75px;"><%= subject.subj %> <i class="fa fa-trash right" aria-hidden="true" style="padding-left:60px; padding-top:3px; padding-bottom:1px"></i></h4>
+              <figcaption
+                class="figure-caption"
+                style="
+                  background-color: white;
+                  padding-top: 3px;
+                  padding-bottom: 1px;
+                "
+              >
+                <h4 style="padding-left: 75px">
+                  <%= subject.subj %>
+                  <i
+                    class="fa fa-trash right"
+                    aria-hidden="true"
+                    style="
+                      padding-left: 60px;
+                      padding-top: 3px;
+                      padding-bottom: 1px;
+                    "
+                   
+                    onclick="deleteData('<%= subject.subj %>')"
+                  ></i>
+                </h4>
               </figcaption>
             </figure>
           </a>
@@ -68,6 +92,8 @@
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="../scripts/subj.js"></script>
-    <footer style="top: 500px;"><p>copyright..</p></footer>
+    <footer style="top: 500px"><p>copyright..</p></footer>
 
     <%- include ('../partials/footer') %>
+  </body>
+</html>

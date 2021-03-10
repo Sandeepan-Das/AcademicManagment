@@ -13,7 +13,7 @@ function detailsfunc() {
     headers: { Authorization: localStorage.getItem("token") },
     contentType: "application/json",
     success: function (data) {
-      
+      console.log(data)
       location.href = `/`;
     },
     error: function (xhr, ajaxOptions, thrownError) {},
