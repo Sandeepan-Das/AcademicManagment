@@ -3,7 +3,12 @@ if (window.localStorage.getItem("token") != null) {
     url: "/verify",
     type: "GET",
     headers: { Authorization: localStorage.getItem("token") },
-    success: function (data) {},
+    success: function (data) {
+      console.log(data);
+      if (!data.isStudent) {
+        location.href = "/";
+      }
+    },
     error: function (xhr, ajaxOptions, thrownError) {
       window.alert("SIGN IN AGAIN");
       location.href = "/signUp";
@@ -11,5 +16,4 @@ if (window.localStorage.getItem("token") != null) {
   });
 } else {
   location.href = "/signUp";
-  console.log("hello");
 }
