@@ -25,7 +25,11 @@
       type="text/css"
       href="../../stylesheets/subject.css"
     />
-    
+    <style> 
+      .fa:hover { 
+        color: red;  
+      } 
+  </style> 
   </head>
   <body style="background-color: #DCE1E3;">
     <%- include('../partials/header') %>
@@ -54,7 +58,7 @@
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwwXQu1hZwcBerHRcOGAAGgk0UBmbvMl9fOQ&usqp=CAU"
               />
               <figcaption class="figure-caption" style="background-color: white; padding-top:3px; padding-bottom:1px">
-                <h4><%= subject.subj %></h4>
+                <h4 style="padding-left: 75px;"><%= subject.subj %> <i class="fa fa-trash right" aria-hidden="true" style="padding-left:60px; padding-top:3px; padding-bottom:1px"></i></h4>
               </figcaption>
             </figure>
           </a>
