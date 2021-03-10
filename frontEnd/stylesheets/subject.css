@@ -44,11 +44,11 @@ body {
 .thumbnail{
   display: block;
   padding: 4px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   line-height: 1.42857143;
   background-color: #fff;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 2px;
   transition: border .2s ease-in-out;
 } 
 
@@ -92,3 +92,4 @@ footer {
 footer p {
   color: #ddd;
 }
+

@@ -25,6 +25,7 @@
       type="text/css"
       href="../../stylesheets/subject.css"
     />
+    
   </head>
   <body style="background-color: #DCE1E3;">
     <%- include('../partials/header') %>
@@ -48,14 +49,14 @@
         <% subjects.forEach(function(subject){ %>
         <div class="col-md-6 col-sm-12 col-lg-4 col-xl-3">
           <a onclick="fetchShow('<%= subject.subj %>')">
-            <div class="thumbnail">
-              <img
+            <figure class="figure" style="border:8px solid; border-color:white">
+              <img class="figure-image img-fluid"
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwwXQu1hZwcBerHRcOGAAGgk0UBmbvMl9fOQ&usqp=CAU"
               />
-              <div class="caption">
+              <figcaption class="figure-caption" style="background-color: white; padding-top:3px; padding-bottom:1px">
                 <h4><%= subject.subj %></h4>
-              </div>
-            </div>
+              </figcaption>
+            </figure>
           </a>
         </div>
         <% }); %>
