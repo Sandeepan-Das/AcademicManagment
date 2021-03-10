@@ -5,6 +5,7 @@ function fetchShow(subj) {
   location.href = `/show?ID=${data.ID}&year=${data.year}&branch=${data.branch}&subj=${subj}`;
 }
 
+
 function fetchURL() {
   const params = new URLSearchParams(window.location.search);
   console.log(params);
