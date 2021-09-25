@@ -5,3 +5,4 @@ This is a website to manage academic records of IIIT BBSR
 * npm install
 * npm run dev
 
+
